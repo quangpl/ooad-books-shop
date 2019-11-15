@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "../node_modules/antd/dist/antd.min.css"
 import App from './components/App';
+import "./assets/css/App.css"
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

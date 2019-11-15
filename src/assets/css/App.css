@@ -20,3 +20,35 @@
 .App-link {
   color: #09d3ac;
 }
+
+.detail {
+  background-color: #ffffff;
+}
+.detail-thumbnail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #F4F4F4;
+}
+.detail-info{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.detail-info--text{
+  margin:5px;
+}
+.detail-info--price{
+  color:#FF5B4E;
+  font-size:30px;
+}
+.detail-info--discount{
+  color:#BEBEBE;
+}
+.detail-info--action{
+   display: flex;
+   align-items: center;
+   align-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -52,3 +52,16 @@
   flex-direction: row;
   justify-content: space-around;
 }
+.comment {
+  padding:20px ;
+  background-color: #ffffff;
+}
+.comment-item{
+  border-radius: 10px;
+  margin: 8px;
+ border:1px solid #F4F4F4 ;
+}
+
+.mt-1{
+  margin-top:10px;
+}

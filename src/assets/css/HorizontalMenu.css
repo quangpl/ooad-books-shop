@@ -1,0 +1,22 @@
+.ant-menu-item-active:hover{
+    border-bottom: none !important;
+    border-top: 2px solid #1890ff;
+    color: #1890ff;
+}
+
+.ant-menu-item{
+    border-bottom: none !important;
+}
+
+.ant-menu-item-selected{
+    border-top: 2px solid #1890ff;
+    color: #1890ff;
+}
+
+.menu{
+    position: absolute;
+    left: 0%;
+    right: 72.73%;
+    top: 4%;
+    bottom: 0%;
+}

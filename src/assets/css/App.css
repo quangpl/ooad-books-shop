@@ -20,3 +20,19 @@
 .App-link {
   color: #09d3ac;
 }
+
+.login{
+  color: #707C8B;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}

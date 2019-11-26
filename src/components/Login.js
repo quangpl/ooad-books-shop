@@ -1,29 +1,20 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Row, Col } from 'antd';
 
-// import { Layout, Menu, Breadcrumb, Icon, Avatar,Input,Button } from "antd";
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// const { Header, Content, Footer, Sider } = Layout;
-// const { SubMenu } = Menu;
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+});
 
-// export default class Login extends React.Component {
-//   render() {      
-//     return(    
-//     <div>
-//     <h2>Login</h2>
-//     <text>Email/SĐT: </text> <Input placeholder="Basic usage" />
-//     <Input placeholder="Basic usage" />
-//     <Button block>Đăng nhập</Button>
-//     <Button type="primary" block>Đăng nhập bằng Facebook</Button>
-//     <Button type="danger" block>Đăng nhập bằng Google</Button>
-
-//     </div>);
-//   }  
-// }
-
-
-
-export default class Login  extends React.Component {
+class NormalLoginForm extends React.Component {
+  state = {
+    confirmDirty: false,
+  }
+  //XỬ LÝ SHOW ON MẬT KHẨU
+  handleConfirmBlur = e => {
+    const { value } = e.target;
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+  };
+  
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -36,8 +27,10 @@ export default class Login  extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
+      <Form onSubmit={this.handleSubmit} className="login-form form-login">
+        {/* Textbox Username */} 
+        <Form.Item>       
+          <h1 style={{fontSize: '20px'}}>Login</h1>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
@@ -47,34 +40,64 @@ export default class Login  extends React.Component {
             />,
           )}
         </Form.Item>
+        
+        {/* Textbox password  */}
         <Form.Item>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            <Input.Password
+              onBlur={this.handleConfirmBlur}
+              prefix={<Icon type="lock" />}
               type="password"
               placeholder="Password"
             />,
           )}
         </Form.Item>
-        <Form.Item>
+
+        {/* Quên mật khẩu / Remember -> tạo col */}  
+        <Form.Item >
+        <div>
+        <Row>
+          
+          <Col span={12}>
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
+          </Col>
+
+          <Col span={12}>
+           <a className="login-form-forgot " href="">
             Forgot password
-          </a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+            </a>
+          </Col>
+        </Row>
+        </div>    
+
+        {/* Button login*/}     
+
+          <Button block style={{backgroundColor:'rgb(253, 216, 53)'}} htmlType="submit"className="login-form-button">
             Log in
           </Button>
+          
+          <Button block type="primary" htmlType="submit" className="login-form-button">
+          <IconFont type="icon-facebook" />            
+            Continue with Facebook
+          </Button>
+
+          <Button block type="danger" htmlType="submit" className="login-form-button ">
+            <Icon type="google-plus" />
+            Continue with Google +
+          </Button>
+
+         {/* Register now */}    
           Or <a href="">register now!</a>
         </Form.Item>
+
       </Form>
     );
   }
 }
-
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
-
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
+export default WrappedNormalLoginForm;

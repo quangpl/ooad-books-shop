@@ -1,10 +1,12 @@
 import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
 
 import { Layout, Menu, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./Login";
+
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -95,8 +97,14 @@ export default class App extends React.Component {
                 <Route exact path="/login">
                   <Login />
                 </Route>
+                <Route exact path="/register">
+                  <Register />
+                </Route>
 
               </Switch>
+
+
+              
             </Content>
             <Footer style={{ textAlign: "center" }}>
               EZBooks @2019 Created by EZGroup

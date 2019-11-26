@@ -21,18 +21,15 @@
   color: #09d3ac;
 }
 
-.login{
-  color: #707C8B;
-  font-weight: 300;
-  margin-bottom: 50px;
+.form-login{
+  text-align: center;
+  margin: 0 auto;
+  width: 400px ;
 }
 
-#components-form-demo-normal-login .login-form {
-  max-width: 300px;
-}
-#components-form-demo-normal-login .login-form-forgot {
-  float: right;
-}
-#components-form-demo-normal-login .login-form-button {
-  width: 100%;
+
+.register-form{
+  text-align: center;
+  margin: 0 auto;
+  width: 400px;
 }

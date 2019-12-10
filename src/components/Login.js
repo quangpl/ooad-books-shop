@@ -81,7 +81,7 @@ class NormalLoginForm extends React.Component {
             Log in
           </Button>
           
-          <Button block type="primary" htmlType="submit" className="login-form-button">
+          {/* <Button block type="primary" htmlType="submit" className="login-form-button">
           <IconFont type="icon-facebook" />            
             Continue with Facebook
           </Button>
@@ -89,7 +89,7 @@ class NormalLoginForm extends React.Component {
           <Button block type="danger" htmlType="submit" className="login-form-button ">
             <Icon type="google-plus" />
             Continue with Google +
-          </Button>
+          </Button> */}
 
          {/* Register now */}    
           Or <a href="">register now!</a>

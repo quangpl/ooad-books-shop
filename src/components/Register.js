@@ -1,13 +1,5 @@
 import React from "react";
-import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,DatePicker } from 'antd';
-
-// nếu muốn có ngày tháng năm sinh
-// import moment from 'moment';
-// const { MonthPicker, RangePicker } = DatePicker;
-// const dateFormatList = ['DD/MM/YYYY']; 
-
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+import {Form, Input, Icon, Select, Checkbox, Button } from 'antd';
   
   class RegistrationForm extends React.Component {
     state = {
@@ -52,34 +44,23 @@ const AutoCompleteOption = AutoComplete.Option;
       const { getFieldDecorator } = this.props.form;
       const { autoCompleteResult } = this.state;
 
-      // // LẤY MÃ VÙNG -> SỐ ĐIỆN THOẠI
-      // const prefixSelector = getFieldDecorator('prefix', {
-      //   initialValue: '86',
-      // })(
-      //   <Select style={{ width: 70 }}>
-      //     <Option value="86">+86</Option>
-      //     <Option value="87">+87</Option>
-      //   </Select>,
-      // );
-
-
       return (
         <Form  onSubmit={this.handleSubmit} className='Register register-form' >          
         
         {/* NHẬP HỌ TÊN */}  
-        <Form.Item>              
-        <h1 style={{fontSize: '20px'}}>Register</h1>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />,
-          )}
-        </Form.Item>
+          <Form.Item>              
+          <h1 style={{fontSize: '20px'}}>Register</h1>
+            {getFieldDecorator('username', {
+             rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+             <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Username"
+              />,
+            )}
+          </Form.Item>
 
-          {/* NHẬP EMAIL */}           
+        {/* NHẬP EMAIL */}           
           <Form.Item >
             {getFieldDecorator('email', {
               rules: [
@@ -98,7 +79,7 @@ const AutoCompleteOption = AutoComplete.Option;
             />,)}
           </Form.Item>
 
-          {/* MẬT KHẨU */}   
+        {/* MẬT KHẨU */}   
           <Form.Item hasFeedback>
             {getFieldDecorator('password', {
               rules: [
@@ -118,7 +99,7 @@ const AutoCompleteOption = AutoComplete.Option;
             />,)}
           </Form.Item>
 
-          {/* XÁC NHẬN MẬT KHẨU */}   
+        {/* XÁC NHẬN MẬT KHẨU */}   
           <Form.Item  hasFeedback>
             {getFieldDecorator('confirm', {
               rules: [
@@ -138,32 +119,17 @@ const AutoCompleteOption = AutoComplete.Option;
             />,)}
           </Form.Item>
           
-          {/* SỐ ĐIỆN THOẠI */}   
+        {/* SỐ ĐIỆN THOẠI */}   
           <Form.Item>
-          {<Row gutter={8}>
-            <Col span={16}>
             {getFieldDecorator('phone', {
               rules: [{ required: true, message: 'Please input your phone number!' }],
             })(<Input 
-              // addonBefore={prefixSelector} style={{ width: '100%' }} 
               prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Phone number"/>)}
-            </Col>
-            {/* lấy mã captcha */}
-            <Col span={8}>
-            <Button block style={{backgroundColor: 'rgb(253, 216, 53)'}} >Get captcha</Button>
-              </Col>
-            </Row>
-          }
           </Form.Item>
           
 
-           {/* NGÀY SINH   
-          <Form.Item>
-              <DatePicker defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />           
-          </Form.Item> */}
-
-          {/* NHẬN THÔNG BÁO */}  
+        {/* NHẬN THÔNG BÁO */}  
           <Form.Item>
             {getFieldDecorator('agreement', {valuePropName: 'checked',})
             (<Checkbox>
@@ -171,7 +137,7 @@ const AutoCompleteOption = AutoComplete.Option;
              </Checkbox>,)}
           </Form.Item>
 
-          {/* NÚT SUMIT */}  
+        {/* NÚT SUMIT */}  
           <Form.Item >
             <Button block style={{backgroundColor: 'rgb(253, 216, 53)'}} htmlType="submit">
               Register

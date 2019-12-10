@@ -30,12 +30,10 @@ export default class App extends React.Component {
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <Menu.Item key="1">
                 <Icon type="home" />
-                Home
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="desktop" />
-                Detail
                 <Link to="/detail" />
               </Menu.Item>
               <SubMenu
@@ -78,7 +76,7 @@ export default class App extends React.Component {
                 }}
                 size="large"
               >
-                EZ{" "}
+                EZ
               </Avatar>
             </Header>
             <Content style={{ margin: "0 16px" }}>

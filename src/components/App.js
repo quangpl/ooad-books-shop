@@ -2,9 +2,10 @@ import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
 import ListBook from "./ListBook"
+import UserBar from "./UserBar"
 import Login from "./Login"
 import Register from "./Register"
-import { Layout, Menu, Icon, Avatar } from "antd";
+import { Layout, Menu, Icon, Avatar, Row } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -70,7 +71,7 @@ export default class App extends React.Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header style={{ background: "#fff", padding: 0 }}>
+            <Header style={{ background: "#fff", padding: 0, flexDirection: 'row', justifyContent: 'space-between', display: 'flex', alignItems: 'center', padding: 10}}>
               <Avatar
                 style={{
                   backgroundColor: "#001529",
@@ -80,6 +81,7 @@ export default class App extends React.Component {
               >
                 EZ
               </Avatar>
+              <UserBar/>
             </Header>
             <Content style={{ margin: "0 16px" }}>
               <Switch>

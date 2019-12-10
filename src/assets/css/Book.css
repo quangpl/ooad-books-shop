@@ -1,0 +1,23 @@
+.book{
+    width: 20%;
+    height: 200px;
+    margin: 1%;
+}
+
+.image_book{
+    width: 100%;
+}
+
+
+
+.discount{
+    font-size: 10px;
+}
+
+.favorite{
+    background-color: pink;
+}
+
+.save_button{
+    float: right;
+}

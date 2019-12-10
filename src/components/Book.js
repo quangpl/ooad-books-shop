@@ -18,10 +18,10 @@ class Book extends React.Component {
                 <p>{this.props.author}</p>
                 <span>
                     <strong>{this.props.price}</strong>
-                    <span> -{this.props.salePricePercent}%  </span>
-                    <span class="alignment_right"><strike>{this.props.originalPrice}</strike></span>
+                    <span class="discount"> -{this.props.salePricePercent}%  </span>
+                    <span class="origin_price"><strike>{this.props.originalPrice}</strike></span>
                     <button class="save_button">
-                        <Icon type="heart" class="alignment_left"></Icon>
+                        <Icon type="heart" class="favorite"></Icon>
                     </button>
                 </span>
             </figure>   

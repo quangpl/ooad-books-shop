@@ -1,7 +1,9 @@
 import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
-
+import ListBook from "./ListBook"
+import Login from "./Login"
+import Register from "./Register"
 import { Layout, Menu, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
@@ -80,11 +82,15 @@ export default class App extends React.Component {
               </Avatar>
             </Header>
             <Content style={{ margin: "0 16px" }}>
-             
-
               <Switch>
                 <Route exact path="/">
                   <Home />
+                </Route>
+                <Route exact path="/login">
+                  <Login />
+                </Route>
+                <Route exact path="/register">
+                  <Register />
                 </Route>
                 <Route exact path="/detail">
                   <Detail />

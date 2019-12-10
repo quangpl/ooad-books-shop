@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import Book from './Book.js'
-import '../assets/css/ListBook.css'
 class ListBook extends React.Component{
     constructor(props){
         super(props)

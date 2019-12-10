@@ -65,3 +65,16 @@
 .mt-1{
   margin-top:10px;
 }
+
+.form-login{
+  text-align: center;
+  margin: 0 auto;
+  width: 400px ;
+}
+
+
+.register-form{
+  text-align: center;
+  margin: 0 auto;
+  width: 400px;
+}

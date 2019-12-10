@@ -1,6 +1,6 @@
 import React from "react";
 import HorizontalMenu from "./HorizontalMenu"
-
+import ListBook from "./ListBook"
 import { Layout, Menu, Breadcrumb, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { MenuItem } from "rc-menu";
@@ -52,6 +52,6 @@ export default class Home extends React.Component {
   // }
 
   render() {
-   return <h2>Home child</h2>;
+   return <ListBook/>;
   }
 }

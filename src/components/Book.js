@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import '../assets/css/Book.css'
 import { Icon } from 'antd'
 class Book extends React.Component {
     constructor(props){

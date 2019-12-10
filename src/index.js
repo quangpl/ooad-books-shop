@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import "../node_modules/antd/dist/antd.min.css"
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-
+import './assets/css/App.css';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

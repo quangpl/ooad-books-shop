@@ -5,8 +5,11 @@ import ListBook from "./ListBook"
 import UserBar from "./UserBar"
 import Login from "./Login"
 import Register from "./Register"
+import Admin from "./Admin"
+import BookManagement from './BookManagement'
 import { Layout, Menu, Icon, Avatar, Row } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import AdminPage from "./Admin";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -32,46 +35,22 @@ export default class App extends React.Component {
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <Menu.Item key="1">
-                <Icon type="home" />
+
                 <Link to="/" />
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon type="desktop" />
+
                 <Link to="/detail" />
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    <span>User</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="3">Tom</Menu.Item>
-                <Menu.Item key="4">Bill</Menu.Item>
-                <Menu.Item key="5">Alex</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="team" />
-                    <span>Team</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="6">Team 1</Menu.Item>
-                <Menu.Item key="8">Team 2</Menu.Item>
-              </SubMenu>
               <Menu.Item key="9">
-                <Icon type="file" />
+                
                 <span>File</span>
               </Menu.Item>
             </Menu>
           </Sider>
           <Layout>
-            <Header style={{ background: "#fff", padding: 0, flexDirection: 'row', justifyContent: 'space-between', display: 'flex', alignItems: 'center', padding: 10}}>
+            <Header 
+              style={{ background: "#fff", padding: 0, flexDirection: 'row', justifyContent: 'space-between', display: 'flex', alignItems: 'center', padding: 10}}>
               <Avatar
                 style={{
                   backgroundColor: "#001529",

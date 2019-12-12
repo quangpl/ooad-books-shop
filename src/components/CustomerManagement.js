@@ -6,7 +6,7 @@ import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
 
-class BookManagement extends React.Component {
+class CustomerManagement extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
@@ -22,38 +22,37 @@ class BookManagement extends React.Component {
 
         var columns = [
             {
-                    title: 'Name',
-                    dataIndex: 'name',
-                    width: '25%',
-                    editable: true,
+                title: 'ID',
+                dataIndex: 'id',
+                width: '5%',
             },
             {
-                    title: 'Author',
-                    dataIndex: 'author',
-                    width: '15%',
-                    editable: true,
+                title: 'Name',
+                dataIndex: 'name',
+                width: '25%',
+                editable: true,
             },
             {
-                title: 'Realease Year',
-                dataIndex: 'realeaseYear',
+                title: 'Date Of Birth',
+                dataIndex: 'birthDate',
                 width: '15%',
                 editable: true,
             },
             {
-                title: 'Publisher',
-                dataIndex: 'publisher',
+                title: 'Address',
+                dataIndex: 'address',
+                width: '20%',
+                editable: true,
+            },
+            {
+                title: 'Phone',
+                dataIndex: 'phoneNumber',
                 width: '15%',
                 editable: true,
             },
             {
-                title: 'Price',
-                dataIndex: 'price',
-                width: '15%',
-                editable: true,
-            },
-            {
-                title: 'Import Date',
-                dataIndex: 'importDate',
+                title: 'Email',
+                dataIndex: 'email',
                 width: '15%',
                 editable: true,
             },
@@ -63,21 +62,19 @@ class BookManagement extends React.Component {
                 {
                     id: '1',
                     name: 'abc',
-                    genre: 'abc',
-                    author: 'abc',
-                    realeaseYear: '1000',
-                    publisher: 'abc',
-                    price: '20.000',
+                    birthDate: '1/1/1',
+                    address: 'abc',
+                    phoneNumber: '1000',
+                    email: 'abc@abc.com',
                     importDate: '1/1/1',
                 },
                 {
                     id: '2',
                     name: 'abc',
-                    genre: 'abc',
-                    author: 'abc',
-                    realeaseYear: '1000',
-                    publisher: 'abc',
-                    price: '20.000',
+                    birthDate: '1/1/1',
+                    address: 'abc',
+                    phoneNumber: '1000',
+                    email: 'abc@abc.com',
                     importDate: '1/1/1',
                 },
             ];
@@ -88,74 +85,63 @@ class BookManagement extends React.Component {
                 <div>
                     <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 23 }} labelCol={{ span: 5 }}>
                         <Row>
-                            <Col span={12}>
-                                <Form.Item label='Tên sách' labelAlign='left'>
-                                    {getFieldDecorator("bookname", {
+                            {/* <Col span={12}>
+                                <Form.Item label='ID' labelAlign='left'>
+                                    {getFieldDecorator("customerID", {
                                         rules: [{ required: true, message: "Không bỏ trống trường này!" }]
                                     })(
                                         <Input placeholder='Tên sách'/>
                                     )}
                                 </Form.Item>
-                            </Col>
+                            </Col> */}
                             <Col span={12}>
-                                <Form.Item label='Tên tác giả' labelAlign='left'>
-                                    {getFieldDecorator("userName", {
+                                <Form.Item label='Tên Khách Hàng' labelAlign='left'>
+                                    {getFieldDecorator("customerName", {
                                         rules: [{ required: true, message: "Không bỏ trống trường này!" }]
                                     })(
-                                        <Input placeholder='Tên tác giả'/>
+                                        <Input placeholder='Tên Khách Hàng'/>
+                                    )}
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item label='Ngày Sinh' labelAlign='left'>
+                                    {getFieldDecorator("birthDate", {
+                                        rules: [{ required: true, message: "Không bỏ trống trường này!" }]
+                                    })(
+                                        <DatePicker placeholder='Ngày Sinh'/>
                                     )}
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <Form.Item label='Thể loại' labelAlign='left'>
-                                    {getFieldDecorator("bookGenre", {
+                                <Form.Item label='Địa Chỉ' labelAlign='left'>
+                                    {getFieldDecorator("address", {
                                         rules: [{ required: true, message: "Không bỏ trống trường này!" }]
                                     })(
-                                        <Input placeholder='Thể loại'/>
+                                        <Input placeholder='Địa Chỉ' />
                                     )}
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item label='Năm xuất bản' labelAlign='left'>
-                                    {getFieldDecorator("realeaseYear", {
+                                <Form.Item label='Số Điện Thoại' labelAlign='left'>
+                                    {getFieldDecorator("phone", {
                                         rules: [{ required: true, message: "Không bỏ trống trường này!" }]
                                     })(
-                                        <NumericInput />
-                                    )}
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={12}>
-                                <Form.Item label='Nhà xuất bản ' labelAlign='left'>
-                                    {getFieldDecorator("publisher", {
-                                        rules: [{ required: true, message: "Không bỏ trống trường này!" }]
-                                    })(
-                                        <Input placeholder='Nhà xuất bản'/>
-                                    )}
-                                </Form.Item>
-                            </Col>
-                            <Col span={12}>
-                                <Form.Item label='Giá' labelAlign='left'>
-                                    {getFieldDecorator("price", {
-                                        rules: [{ required: true, message: "Không bỏ trống trường này!" }]
-                                    })(
-                                        <NumericInput />
+                                        <Input placeholder='Số Điện Thoại'/>
                                     )}
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <Form.Item label='Ngày nhập' labelAlign='left'>
-                                    {getFieldDecorator("importDate", {
+                                <Form.Item label='Email' labelAlign='left'>
+                                    {getFieldDecorator("email", {
                                         rules: [{ required: true, message: "Không bỏ trống trường này!" }]
                                     })(
-                                        <DatePicker placeholder='Ngày nhập' />
+                                        <Input placeholder='Email' />
                                     )}
-                                </Form.Item>  
+                                </Form.Item>
                             </Col>
                         </Row>
                         <Row type='flex' justify='center'>
@@ -171,8 +157,8 @@ class BookManagement extends React.Component {
     }
 }
 
-const WrappedBookManagement = Form.create({ name: "book_management" })(
-    BookManagement
+const WrappedCustomerManagement = Form.create({ name: "customer_management" })(
+    CustomerManagement
   );
 
-export default WrappedBookManagement;
+export default WrappedCustomerManagement;

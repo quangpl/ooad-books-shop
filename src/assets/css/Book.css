@@ -1,6 +1,6 @@
 .book{
     padding: 0% 0.5% 0.5% 0.5%;
-    margin: 1%;
+    margin: 3%;
     transition: 0.1s;
     border-radius: 2%;
     background: white;
@@ -13,6 +13,9 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.title_book{
+    font-size: 1.5vw;
+}
 
 .image_book{
     width: 100%;
@@ -20,30 +23,25 @@
 }
 .origin_price{
     color: #7F7F7F;
+    font-size: 1vw;
 }
 .price{
     
-    font-size: 17px;
+    font-size: 1.5vw;
     color: #242424;
 }
 
 .discount{
     position: absolute;
-    padding: 0.5%;
-    font-size: 80%;
+    padding: 2%;
+    font-size: 0.9vw;
     color:#F3F7F7;
     background-color: #FF4E58 ;
     border: tomato;
-    width: 15%;
-    height: 9%;
     text-align: center;
     border-radius: 0% 0% 250% 250%;
 }
 
 .favorite_icon{
     background-color: red;
-}
-
-.save_button{
-    background-color: transparent;
 }

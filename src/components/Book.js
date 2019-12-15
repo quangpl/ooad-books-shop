@@ -1,5 +1,13 @@
 import React,{Component} from 'react'
-import { Icon } from 'antd'
+import '../assets/css/Book.css'
+import { Button } from 'antd'
+
+import {
+    
+    Link
+  } from "react-router-dom";
+import _default from 'antd/lib/date-picker';
+
 class Book extends React.Component {
     constructor(props){
         super(props)
@@ -7,24 +15,22 @@ class Book extends React.Component {
     
   render(){
       return(
-        <span class="book">
-            <a>
-                <img src={this.props.image} class="image_book"></img>
-            </a>
+        <div class="book">
+                <Link>  
+                    <span class="discount"> -{this.props.salePricePercent}%  </span>
+                    <img src={this.props.image} class="image_book"></img>
+                </Link>
+
+                <h3 class="title_book">{this.props.name}</h3>
                 
-            <figure>
-                <h3>{this.props.name}</h3>
-                <p>{this.props.author}</p>
-                <span>
-                    <strong>{this.props.price}</strong>
-                    <span> -{this.props.salePricePercent}%  </span>
-                    <span class="alignment_right"><strike>{this.props.originalPrice}</strike></span>
-                    <button class="save_button">
-                        <Icon type="heart" class="alignment_left"></Icon>
-                    </button>
-                </span>
-            </figure>   
-        </span>   
+                <div class="book_info">
+                    <strong class="price">{this.props.price}</strong>
+                    <span class="origin_price"><strike>{this.props.originalPrice}</strike></span> 
+                    
+                    <Button size="small" shape="circle" icon="heart" />
+                </div>
+        </div>   
+
       )
   }
 }

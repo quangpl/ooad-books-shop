@@ -1,0 +1,27 @@
+.title{
+    font-size: large;
+    height: 70px;
+    
+}
+
+.list_book_cart{
+     padding: 0%;
+}
+
+.box_money_cart{
+    padding: 5%;
+    margin-bottom: 1%;
+    background-color: white;
+}
+
+.bill_cart_money{
+    font-size: 150%;
+    color: red;
+}
+
+.proceed_to_order{
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
+

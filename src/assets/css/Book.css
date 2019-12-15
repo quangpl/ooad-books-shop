@@ -4,7 +4,6 @@
     transition: 0.1s;
     border-radius: 2%;
     background: white;
-
 }
 .book:hover{
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.19)
@@ -34,7 +33,7 @@
 
 .discount{
     position: absolute;
-    padding: 0.5%;
+    padding: 2%;
     font-size: 0.9vw;
     color:#F3F7F7;
     background-color: #FF4E58 ;

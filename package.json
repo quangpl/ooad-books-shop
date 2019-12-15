@@ -4,16 +4,24 @@
   "private": true,
   "dependencies": {
     "antd": "^3.25.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "randomstring": "^1.1.5",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "^3.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node ./server/app.js"
   },
   "eslintConfig": {
     "extends": "react-app"

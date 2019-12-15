@@ -21,6 +21,51 @@
   color: #09d3ac;
 }
 
+.detail {
+  background-color: #ffffff;
+}
+.detail-thumbnail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #F4F4F4;
+}
+.detail-info{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.detail-info--text{
+  margin:5px;
+}
+.detail-info--price{
+  color:#FF5B4E;
+  font-size:30px;
+}
+.detail-info--discount{
+  color:#BEBEBE;
+}
+.detail-info--action{
+   display: flex;
+   align-items: center;
+   align-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.comment {
+  padding:20px ;
+  background-color: #ffffff;
+}
+.comment-item{
+  border-radius: 10px;
+  margin: 8px;
+ border:1px solid #F4F4F4 ;
+}
+
+.mt-1{
+  margin-top:10px;
+}
+
 .form-login{
   text-align: center;
   margin: 0 auto;

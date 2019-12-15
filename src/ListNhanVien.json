@@ -1,0 +1,62 @@
+[
+    {
+        "id": "1",
+        "name": "Lê Văn Long",
+        "birthDate": "12/7/1995",
+        "address": "53 Hoàng Văn Thụ",
+        "phoneNumber": "00000000000",
+        "email": "LVL@gmail.com",
+        "salary": "7000000",
+        "position": "Thu Ngân"
+    },
+    {
+        "id": "2",
+        "name": "Hoàng Văn Tứ",
+        "birthDate": "11/5/1999",
+        "address": "87 Trần Bình Trọng",
+        "phoneNumber": "00000000000",
+        "email": "hvt@gmail.com",
+        "salary": "7000000",
+        "position": "Thu Ngân"
+    },
+    {
+        "id": "3",
+        "name": "Võ Đình Tú",
+        "birthDate": "10/10/1998",
+        "address": "55 Lê Thánh Tông",
+        "phoneNumber": "00000000000",
+        "email": "VDT@gmail.com",
+        "salary": "7000000",
+        "position": "Thu Ngân"
+    },
+    {
+        "id": "4",
+        "name": "Lê Văn Luyến",
+        "birthDate": "1/11/1992",
+        "address": "45 Lý Thái Tổ",
+        "phoneNumber": "00000000000",
+        "email": "abc@gmail.com",
+        "salary": "7000000",
+        "position": "Thu Ngân"
+    },
+    {
+        "id": "5",
+        "name": "Nguyễn Văn Xuyến",
+        "birthDate": "1/1/1993",
+        "address": "23 Lê Hồng Phong",
+        "phoneNumber": "00000000000",
+        "email": "123@gmail.com",
+        "salary": "7000000",
+        "position": "Thu Ngân"
+    },
+    {
+        "id": "6",
+        "name": "Nguyễn Vân Anh",
+        "birthDate": "28/2/1990",
+        "address": "90 Hai Bà Trưng",
+        "phoneNumber": "00000000000",
+        "email": "NVA@gmail.com",
+        "salary": "8000000",
+        "position": "Thu Ngân"
+    }
+]

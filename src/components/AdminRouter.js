@@ -5,8 +5,14 @@ import Admin from "./AdminRouter";
 import ListBook from "./ListBook";
 import Login from "./Login";
 import Register from "./Register";
+import BookManagement from './BookManagement';
+import CustomerManagement from './CustomerManagement';
+import StaffManagement from './StaffManagement';
+import RuleManagement from './RuleManagement';
+import ReceiptManagement from './ReceiptManagement';
 import { Layout, Menu, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import WrappedCustomerManagement from "./CustomerManagement";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -32,41 +38,24 @@ export default class AdminRouter extends React.Component {
          <h2>Admin</h2>
             <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
               <Menu.Item key="1">
-                <Icon type="home" />
-                <Link to="/" />
+                <span>Quản Lý Sách</span>
+                <Link to="/bookmanagement" />
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon type="desktop" />
-                <Link to="/detail" />
+                <span>Quản Lý Khách</span>
+                <Link to="/customermanagement" />
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    <span>User</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="3">Tom</Menu.Item>
-                <Menu.Item key="4">Bill</Menu.Item>
-                <Menu.Item key="5">Alex</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="team" />
-                    <span>Team</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="6">Team 1</Menu.Item>
-                <Menu.Item key="8">Team 2</Menu.Item>
-              </SubMenu>
-              <Menu.Item key="9">
-                <Icon type="file" />
-                <span>File</span>
+              <Menu.Item key="3">
+                <span>Quản Lý Nhân Viên</span>
+                <Link to="/staffmanagement" />
+              </Menu.Item>
+              <Menu.Item key="4">
+                <span>Quản Lý Quy Định</span>
+                <Link to="/rulemanagement" />
+              </Menu.Item>
+              <Menu.Item key="5">
+                <span>Quản Lý Phiếu Thu</span>
+                <Link to="/receiptmanagement" />
               </Menu.Item>
             </Menu>
           </Sider>
@@ -86,6 +75,21 @@ export default class AdminRouter extends React.Component {
               <Switch>
                 <Route exact path="/">
                   <Admin />
+                </Route>
+                <Route exact path="/bookmanagement">
+                  <BookManagement />
+                </Route>
+                <Route exact path="/customermanagement">
+                  <CustomerManagement />
+                </Route>
+                <Route exact path="/staffmanagement">
+                  <StaffManagement />
+                </Route>
+                <Route exact path="/rulemanagement">
+                  <RuleManagement />
+                </Route>
+                <Route exact path="/receiptmanagement">
+                  <ReceiptManagement />
                 </Route>
               </Switch>
             </Content>

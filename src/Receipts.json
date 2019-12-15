@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "customerName": "Lê Hoàng Thái",
+        "customerID": "1",
+        "address": "70 Võ Thị Sáu",
+        "date": "20/5/2019",
+        "feePaid": "20000",
+        "receipt": "link đến file hóa đơn" 
+    },
+    {
+        "id": "2",
+        "customerName": "Lý Văn Linh",
+        "customerID": "2",
+        "address": "55 Nguyễn Văn Linh",
+        "date": "20/5/2019",
+        "feePaid": "20000",
+        "receipt": "link đến file hóa đơn" 
+    },
+    {
+        "id": "3",
+        "customerName": "Lê Linh",
+        "customerID": "3",
+        "address": "99 Phan Đình Phùng",
+        "date": "20/5/2019",
+        "feePaid": "20000",
+        "receipt": "link đến file hóa đơn" 
+    },
+    {
+        "id": "4",
+        "customerName": "Lý Hoàng Hà",
+        "customerID": "4",
+        "address": "22 Hùng Vương",
+        "date": "20/5/2019",
+        "feePaid": "20000",
+        "receipt": "link đến file hóa đơn" 
+    }
+]

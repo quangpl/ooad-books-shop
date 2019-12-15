@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "name": "Lê Hoàng Thái",
+        "birthDate": "1/1/1991",
+        "address": "70 Võ Thị Sáu",
+        "phoneNumber": "0000000000",
+        "email": "abc@abc.com",
+        "importDate": "2/12/2018"
+    },
+    {
+        "id": "2",
+        "name": "Lý Văn Linh",
+        "birthDate": "1/12/1997",
+        "address": "55 Nguyễn Văn Linh",
+        "phoneNumber": "0000000000",
+        "email": "abc@gmail.com",
+        "importDate": "2/12/2018"
+    },
+    {
+        "id": "3",
+        "name": "Lê Linh",
+        "birthDate": "5/3/1980",
+        "address": "99 Phan Đình Phùng",
+        "phoneNumber": "00000000000",
+        "email": "LL@gmail.com",
+        "importDate": "12/12/2019"
+    },
+    {
+        "id": "4",
+        "name": "Lý Hoàng Hòa",
+        "birthDate": "1/10/1999",
+        "address": "22 Hùng Vương",
+        "phoneNumber": "00000000000",
+        "email": "LHH@gmail.com",
+        "importDate": "5/1/2019"
+    }
+]

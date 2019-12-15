@@ -4,7 +4,6 @@ import ListBook from "./ListBook"
 import { Layout, Menu, Breadcrumb, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { MenuItem } from "rc-menu";
-import ListBook from "./ListBook";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -51,12 +50,8 @@ export default class Home extends React.Component {
 
   //   tmp.innerText = "Normal";
   // }
-  //<h2>Home child</h2>
+
   render() {
-   return (
-     <div>
-       <ListBook></ListBook>
-     </div>
-   );
+   return <ListBook/>;
   }
 }

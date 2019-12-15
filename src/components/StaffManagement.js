@@ -1,6 +1,7 @@
 import React from 'react';
 import NumericInput from './NumericInput';
 import EditableTable from './EditableTable';
+import dataSource from '../ListNhanVien.json';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Select, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
@@ -29,25 +30,25 @@ class CustomerManagement extends React.Component {
             {
                 title: 'Name',
                 dataIndex: 'name',
-                width: '25%',
+                width: '15%',
                 editable: true,
             },
             {
                 title: 'Date Of Birth',
                 dataIndex: 'birthDate',
-                width: '10%',
+                width: '12%',
                 editable: true,
             },
             {
                 title: 'Address',
                 dataIndex: 'address',
-                width: '25%',
+                width: '15%',
                 editable: true,
             },
             {
                 title: 'Phone',
                 dataIndex: 'phoneNumber',
-                width: '10%',
+                width: '14%',
                 editable: true,
             },
             {
@@ -57,34 +58,20 @@ class CustomerManagement extends React.Component {
                 editable: true,
             },
             {
+                title: 'Position',
+                dataIndex: 'position',
+                width: '12%',
+                editable: true,
+            },
+            {
                 title: 'Salary',
                 dataIndex: 'salary',
-                width: '10%'
+                width: '10%',
+                editable: true,
             }
         ];
 
-            var dataSource = [
-                {
-                    id: '1',
-                    name: 'abc',
-                    birthDate: '1/1/1',
-                    address: 'abc',
-                    phoneNumber: '1000',
-                    email: 'abc@abc.com',
-                    salary: '2000',
-                },
-                {
-                    id: '2',
-                    name: 'abc',
-                    birthDate: '1/1/1',
-                    address: 'abc',
-                    phoneNumber: '1000',
-                    email: 'abc@abc.com',
-                    salary: '2000',
-                },
-            ];
-
-            return (
+        return (
             <div>
                 <h1>Quản Lý Sách</h1>
                 <div>

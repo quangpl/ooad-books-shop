@@ -1,6 +1,7 @@
 import React from 'react';
 import NumericInput from './NumericInput';
 import EditableTable from './EditableTable';
+import dataSource from '../Rule.json';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Select, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
@@ -40,20 +41,7 @@ class CustomerManagement extends React.Component {
             },
         ];
 
-            var dataSource = [
-                {
-                    id: '1',
-                    rule: 'abc',
-                    detail: '...',
-                },
-                {
-                    id: '2',
-                    rule: 'abc',
-                    detail: '...',
-                },
-            ];
-
-            return (
+        return (
             <div>
                 <h1>Quản Lý Sách</h1>
                 <div>

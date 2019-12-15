@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "rule": "Số sách tối thiểu",
+        "detail": "30"
+    },
+    {
+        "id": "2",
+        "rule": "Số sách tối đa",
+        "detail": "100"
+    },
+    {
+        "id": "3",
+        "rule": "Hoàn trả",
+        "detail": "Không"
+    },
+    {
+        "id": "4",
+        "rule": "Số ngày nghỉ tối đa trong tháng",
+        "detail": "2"
+    }
+]

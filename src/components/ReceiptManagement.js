@@ -1,6 +1,7 @@
 import React from 'react';
 import NumericInput from './NumericInput';
 import EditableTable from './EditableTable';
+import dataSource from '../Receipts.json';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Select, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
@@ -60,30 +61,11 @@ class CustomerManagement extends React.Component {
                 dataIndex: 'receipt',
                 align: 'center',
                 render: () =>
-                    <Button icon='file' theme='twoTone' onClick={this.handleClick} />
+                    <Button type='primary' icon='file' theme='twoTone' onClick={this.handleClick} />
             },
         ];
 
-            var dataSource = [
-                {
-                    receiptNo: '1',
-                    customerName: 'abc',
-                    address: '...',
-                    date: '...',
-                    feePaid: '...',
-                    // link to receipt 
-                },
-                {
-                    receiptNo: '1',
-                    customerName: 'abc',
-                    address: '...',
-                    date: '...',
-                    feePaid: '...',
-                    // link to receipt 
-                },
-            ];
-
-            return (
+        return (
             <div>
                 <h1>Quản Lý Sách</h1>
                 

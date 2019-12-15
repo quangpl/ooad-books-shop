@@ -98,7 +98,7 @@ export default class EditableTable extends React.Component {
                 render: (text, record) =>
                     this.state.dataSource.length >= 1 ? (
                         <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.id)}>
-                            <Button icon='delete' theme='twoTone' />
+                            <Button type='danger' icon='delete' theme='twoTone' />
                             {/* <Icon type="delete" theme="twoTone" /> */}
                         </Popconfirm>
                     ) : null,   

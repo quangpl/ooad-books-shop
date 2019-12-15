@@ -1,0 +1,48 @@
+.book{
+    padding: 0% 0.5% 0.5% 0.5%;
+    margin: 3%;
+    transition: 0.1s;
+    border-radius: 2%;
+    background: white;
+
+}
+.book:hover{
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.19)
+}
+.book_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title_book{
+    font-size: 1.5vw;
+}
+
+.image_book{
+    width: 100%;
+    margin-top: 5px;
+}
+.origin_price{
+    color: #7F7F7F;
+    font-size: 1vw;
+}
+.price{
+    
+    font-size: 1.5vw;
+    color: #242424;
+}
+
+.discount{
+    position: absolute;
+    padding: 0.5%;
+    font-size: 0.9vw;
+    color:#F3F7F7;
+    background-color: #FF4E58 ;
+    border: tomato;
+    text-align: center;
+    border-radius: 0% 0% 250% 250%;
+}
+
+.favorite_icon{
+    background-color: red;
+}

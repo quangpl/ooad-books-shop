@@ -1,5 +1,7 @@
 import React from "react";
-import { Form, Input, Icon, Select, Checkbox, Button } from "antd";
+import { Form, Input, Icon, Select, Checkbox, Button , message} from "antd";
+import CustomerService from "../services/customer"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class RegistrationForm extends React.Component {
   state = {
@@ -9,9 +11,11 @@ class RegistrationForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        const customerService = new CustomerService();
+        await customerService.register(values);
+        message.success("Register successfully!")
       }
     });
   };
@@ -49,12 +53,12 @@ class RegistrationForm extends React.Component {
         {/* NHẬP HỌ TÊN */}
         <Form.Item>
           <h1 style={{ fontSize: "20px" }}>Register</h1>
-          {getFieldDecorator("username", {
-            rules: [{ required: true, message: "Please input your username!" }]
+          {getFieldDecorator("name", {
+            rules: [{ required: true, message: "Please input your name!" }]
           })(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Username"
+              placeholder="Your name"
             />
           )}
         </Form.Item>
@@ -76,6 +80,25 @@ class RegistrationForm extends React.Component {
             <Input
               prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
               placeholder="Email"
+            />
+          )}
+        </Form.Item>
+        {/* NHẬP Địa chỉ */}
+        <Form.Item>
+          {getFieldDecorator("address", {
+            rules: [
+              {
+                type: "string"
+              },
+              {
+                required: true,
+                message: "Please input your address"
+              }
+            ]
+          })(
+            <Input
+              prefix={<Icon type="home" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Address"
             />
           )}
         </Form.Item>
@@ -102,7 +125,7 @@ class RegistrationForm extends React.Component {
           )}
         </Form.Item>
 
-        {/* XÁC NHẬN MẬT KHẨU */}
+        {/* XÁC NHẬN MẬT KHẨU
         <Form.Item hasFeedback>
           {getFieldDecorator("confirm", {
             rules: [
@@ -122,7 +145,7 @@ class RegistrationForm extends React.Component {
               placeholder="Confirm password"
             />
           )}
-        </Form.Item>
+        </Form.Item> */}
 
         {/* SỐ ĐIỆN THOẠI */}
         <Form.Item>
@@ -140,7 +163,7 @@ class RegistrationForm extends React.Component {
           )}
         </Form.Item>
 
-        {/* NHẬN THÔNG BÁO */}
+        {/* NHẬN THÔNG BÁO
         <Form.Item>
           {getFieldDecorator("agreement", { valuePropName: "checked" })(
             <Checkbox>
@@ -148,7 +171,7 @@ class RegistrationForm extends React.Component {
               email
             </Checkbox>
           )}
-        </Form.Item>
+        </Form.Item> */}
 
         {/* NÚT SUMIT */}
         <Form.Item>
@@ -159,6 +182,11 @@ class RegistrationForm extends React.Component {
           >
             Register
           </Button>
+          <Link to="/login">
+            <Button block style={{ backgroundColor: "#fff" }}>
+              Login
+            </Button>
+          </Link>
         </Form.Item>
       </Form>
     );

@@ -247,7 +247,7 @@ export default class Home extends React.Component {
            LOAD MORE
          </Button>
        </Row>
-       <span className="category">TOP TRUYỆN</span>
+       <span className="category">SÁCH MỚI NHẤT</span>
        <Row className="stack-book">
          <Col xs={24} sm={8} md={6} lg={4}>
            <Book

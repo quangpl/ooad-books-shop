@@ -21,6 +21,10 @@ const BookSchema = new Schema(
       required: true,
       default: 0
     },
+    numberOfSell: {
+      type: Number,
+      default: 0
+    },
     unitPrice: {
       type: Number,
       required: true
@@ -36,6 +40,12 @@ const BookSchema = new Schema(
     description: {
       type: String,
       required: true
+    },
+    comments:{
+      type : [new Schema({
+        customerId: String,
+        message: String
+      })]
     },
     image: {
       type: String,

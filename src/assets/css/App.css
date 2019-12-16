@@ -1,5 +1,5 @@
-.App {
-  text-align: center;
+.app {
+height: 100%;
 }
 
 .App-logo {
@@ -51,6 +51,7 @@
    align-content: center;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom:15px;
 }
 .comment {
   padding:20px ;

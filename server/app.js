@@ -6,8 +6,25 @@ var logger = require('morgan');
 var debug = require("debug")("server:server");
 var http = require("http");
 var apiRouter = require('./api');
+var cors = require("cors");
 
+var mongoose = require("mongoose");
+const {URL_CONNECT_DB} = require("./utils/constant")
 var app = express();
+app.use(cors());
+
+// connect database
+
+(async () => {
+  await mongoose.connect(URL_CONNECT_DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  if (mongoose.connection.readyState === 1) {
+    console.log("Connect database successfully");
+  }
+})();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +42,6 @@ app.use('/api', apiRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

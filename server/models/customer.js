@@ -36,28 +36,28 @@ Customer.login = async ({
     password,
 }) => {
     let user = await Customer.findOne({
-        email: email
+        email
     }).exec();
 
     if (user) {
         let result = await bcrypt.compare(password, user.password);
         if (result) {
             return {
-                login: true,
-                user: user
+                error: false,
+                token: user.token
             }
         }
         else {
             return {
-                login: false,
-                error: 'Wrong password'
-            }
+              error: true,
+              message: "Wrong password"
+            };
         }
     }
     else {
         return {
-            login: false,
-            error: 'User is invalid'
+            error: true,
+            message: 'User is invalid'
         }
     }
 };

@@ -4,6 +4,8 @@ import Home from "./Home";
 import Admin from "./AdminRouter";
 import Cart from "./Cart";
 import Login from "./Login";
+import CustomerService from "../services/customer";
+
 import Register from "./Register";
 import { Layout, Menu, Icon, Avatar, Input, Dropdown, Button } from "antd";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -16,7 +18,9 @@ export default class UserRouter extends React.Component {
     super(props);
     this.state = {
       collapsed: false,
-      visible: false
+      visible: false,
+      isLoad: true,
+      authInfo: {}
     };
   }
 
@@ -33,12 +37,36 @@ export default class UserRouter extends React.Component {
     this.setState({ visible: flag });
   };
 
+  async componentDidMount(){
+    const customerService = new CustomerService();
+    const authInfo = await customerService.auth();
+    await this.setState({
+      authInfo
+    });
+    await this.setState({
+      isLoad: false
+    });
+  }
   render() {
     const menu = (
       <Menu onClick={this.handleMenuClick}>
-        <Menu.Item key="1">Clicking me will not close the menu.</Menu.Item>
-        <Menu.Item key="2">Clicking me will not close the menu also.</Menu.Item>
-        <Menu.Item key="3">Clicking me will close the menu</Menu.Item>
+        {this.state.authInfo.name ? (
+          <Menu.Item
+            key="1"
+            onClick={() => {
+              localStorage.setItem("token", undefined);
+              this.setState({
+                authInfo: {}
+              });
+            }}
+          >
+            Logout
+          </Menu.Item>
+        ) : (
+          <Menu.Item key="1" onClick={() => {}}>
+            <Link to="/login"> Login </Link>
+          </Menu.Item>
+        )}
       </Menu>
     );
     return (
@@ -117,7 +145,7 @@ export default class UserRouter extends React.Component {
                 enterButton="Search"
                 size="large"
                 style={{
-                  flex: 0.7
+                  flex: 0.6
                 }}
                 onSearch={value => console.log(value)}
               />
@@ -127,13 +155,17 @@ export default class UserRouter extends React.Component {
                   alignContentL: "center",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  flex: 0.2
+                  flex: 0.3
                 }}
               >
                 <div>
                   <Avatar shape="cirlce" size={40} icon="user" />
                   <Dropdown overlay={menu}>
-                    <b>Guest</b>
+                    <b>
+                      {this.state.authInfo.name
+                        ? this.state.authInfo.name
+                        : "Guest"}
+                    </b>
                   </Dropdown>
                 </div>
                 <Link to="/cart">
@@ -143,7 +175,7 @@ export default class UserRouter extends React.Component {
                 </Link>
               </div>
             </Header>
-            <Content style={{ margin: "0 16px" }}>
+            <Content style={{ margin: "0 16px", height: "100%" }}>
               <Route exact path="/" component={Home} />
 
               <Route exact path="/login" component={Login} />

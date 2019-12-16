@@ -79,6 +79,22 @@ Book.getPriceById = async (id) => {
     }).exec();
     return book.unitPrice;
 };
+Book.addComment = async ({ bookId,customerId ,message}) => {
+  let book = await Book.updateOne(
+    {
+      _id: mongoose.Types.ObjectId(bookId)
+    },
+    {
+      $push: {
+        comments: {
+          customerId,
+          message
+        }
+      }
+    }
+  ).exec();
+  return book;
+};
 
 Book.getAll = async () => {
     return await Book.find({}).exec();

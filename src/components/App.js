@@ -23,16 +23,18 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Router path="/admin">
-            <AdminRouter />
-          </Router>
-          <Router>
-            <UserRouter />
-          </Router>
-        </Switch>
-      </Router>
+      <div className="app">
+        <Router>
+          <Switch>
+            <Router path="/admin">
+              <AdminRouter />
+            </Router>
+            <Router>
+              <UserRouter />
+            </Router>
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }

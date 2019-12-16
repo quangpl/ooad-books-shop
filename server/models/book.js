@@ -39,7 +39,6 @@ Book.update = async ({
   numberOf,
   unitPrice,
   publishBy,
-  publishAt,
   image,
   description
 }) => {
@@ -55,7 +54,6 @@ Book.update = async ({
       numberOf,
       unitPrice,
       publishBy,
-      publishAt,
       image,
       description
     }

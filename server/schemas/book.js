@@ -30,7 +30,7 @@ const BookSchema = new Schema(
       required: true
     },
      importDate: {
-      type: Number,
+      type: Date,
       required: true
     },
     publishBy: {
@@ -39,7 +39,6 @@ const BookSchema = new Schema(
     },
     publishAt: {
       type: Date,
-      required: true
     },
     description: {
       type: String,

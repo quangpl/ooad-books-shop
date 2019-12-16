@@ -36,5 +36,14 @@ class Customer {
     const res = await this.request.get(`${BACK_END_URL}/api/client/auth`);
     return res.data;
   }
+
+  async getBooks() {
+    const res = await this.request.get(`${BACK_END_URL}/api/client/books`);
+    return res.data.books;
+  }
+  async getById(id) {
+    const res = await this.request.get(`${BACK_END_URL}/api/client/books/${id}`);
+    return res.data.book;
+  }
 }
 export default Customer;

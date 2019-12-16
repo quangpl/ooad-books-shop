@@ -15,7 +15,7 @@ class Book extends React.Component {
     
   render(){
       return (
-        <Link to="/detail">
+        <Link to={`/detail/${this.props.id}`}>
           <div class="book">
             <span class="discount"> -{this.props.discount}% </span>
             <img src={this.props.image} class="image_book"></img>
@@ -24,9 +24,7 @@ class Book extends React.Component {
 
             <div class="book_info">
               <div className="price-info">
-                <b class="price">
-                  {this.props.price} đ 
-                </b>
+                <b class="price">{this.props.price} đ</b>
 
                 <p className="original-price">
                   <strike>{this.props.originalPrice} đ</strike>

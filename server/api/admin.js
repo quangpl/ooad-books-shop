@@ -25,6 +25,24 @@ router.get("/books", async function(req, res, next) {
   });
 });
 
+router.post("/book/edit", async function(req, res, next) {
+  console.log(req.body);
+  const books = await bookModel.update({
+    id: req.body.id,
+    typeId:req.body.typeId,
+    name:req.body.name,
+    author:req.body.author,
+    numberOf:req.body.numberOf,
+    unitPrice:req.body.unitPrice,
+    publishBy:req.body.publishBy,
+    image:req.body.image,
+    description: req.body.description
+  });
+  res.json({
+    books: books
+  });
+});
+
 router.post("/book/delete", async function(req, res, next) {
   const books = await bookModel.delete(req.body.id);
   res.json({

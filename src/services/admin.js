@@ -34,9 +34,41 @@ class Admin {
     });
     return true;
   }
-  async getBooks(){
+  async getBooks() {
     const res = await this.request.get(`${BACK_END_URL}/api/admin/books`);
     return res.data.books;
+  }
+
+  async deleteBooks(id) {
+    const res = await this.request.post(`${BACK_END_URL}/api/admin/book/delete`,{
+      id:id
+    });
+    return true;
+  }
+
+  async updateBook({
+     id,
+    typeId,
+    name,
+    author,
+    numberOf,
+    unitPrice,
+    publishBy,
+    image,
+    description,
+  }){
+ const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`,{
+       id,
+    typeId,
+    name,
+    author,
+    numberOf,
+    unitPrice,
+    publishBy,
+    image,
+    description,
+    });
+    return true;
   }
 
   //   async login({ password, email }) {

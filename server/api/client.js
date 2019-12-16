@@ -1,6 +1,8 @@
 let express = require("express");
 let router = express.Router();
 const customerModel = require("../models/customer")
+const bookModel = require("../models/book");
+
 const {authCustomer} = require("../utils/secure")
 router.get("/", async function(req, res, next) {
   // authCustomer(req, res, next);
@@ -38,6 +40,21 @@ router.get("/auth", async function(req, res, next) {
     });
  }
   return;
+});
+
+
+router.get("/books", async function(req, res, next) {
+  const books = await bookModel.getAll();
+  res.json({
+    books
+  })
+});
+
+router.get("/books/:id", async function(req, res, next) {
+  const book = await bookModel.getById(req.params.id);
+  res.json({
+    book
+  });
 });
 
 

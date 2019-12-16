@@ -35,10 +35,6 @@ const CustomerSchema = new Schema({
         required: true,
         default: 0
     },
-    startAt:{
-        type: Number,  //Ngay vao lam
-        default: Date.now()
-    }
 }, {
         timestamps: true,
         versionKey: false

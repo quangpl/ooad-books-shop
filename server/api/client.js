@@ -1,8 +1,8 @@
 let express = require("express");
 let router = express.Router();
-
-router.post("/login", async function(req, res, next) {
-  
+const {authCustomer} = require("../utils/secure")
+router.get("/", async function(req, res, next) {
+  authCustomer(req, res, next);
 });
 
 module.exports = router;

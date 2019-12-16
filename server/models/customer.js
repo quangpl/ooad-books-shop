@@ -7,12 +7,16 @@ Customer.register = async ({
     name,
     password,
     email,
+    address,
+    phone
 }) => {
     let hashPassword = await bcrypt.hash(password, 6);
     let newCustomer = new Customer({
-        name: name,
-        password: hashPassword,
-        email: email,
+      name,
+      password: hashPassword,
+      email,
+      address,
+      phone
     });
 
     await newCustomer.save();

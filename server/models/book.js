@@ -3,65 +3,67 @@ const BookSchema = require('../schemas/book');
 let Book = mongoose.model("Book", BookSchema);
 let Setting = require('./setting');
 Book.add = async ({
+  typeId,
+  name,
+  author,
+  numberOf,
+  unitPrice,
+  publishBy,
+  publishAt,
+  image,
+  description
+}) => {
+  let newBook = new Book({
     typeId,
     name,
     author,
     numberOf,
     unitPrice,
-    shortDesc,
-    fullDesc,
+    publishBy,
+    publishAt,
     image,
-    tag
-}) => {
+    description
+  });
 
-    let newBook = new Book({
-        typeId: typeId,
-        name: name,
-        author: author,
-        numberOf: numberOf,
-        unitPrice: unitPrice,
-        shortDesc: shortDesc,
-        fullDesc: fullDesc,
-        image: image,
-        tag: tag
-    });
-
-    await newBook.save();
-    return newBook;
+  await newBook.save();
+  return newBook;
 };
 
 Book.update = async ({
-    id,
-    type,
-    name,
-    author,
-    numberOf,
-    unitPrice,
-    shortDesc,
-    fullDesc,
-    image,
-    tag
+  id,
+  typeId,
+  name,
+  author,
+  numberOf,
+  unitPrice,
+  publishBy,
+  publishAt,
+  image,
+  description
 }) => {
-
-    return await Book.updateOne({
-        _id: id
-    }, {
-            type: type,
-            name: name,
-            author: author,
-            numberOf: numberOf,
-            unitPrice: unitPrice,
-            shortDesc: shortDesc,
-            fullDesc: fullDesc,
-            image: image,
-            tag: tag
-        }).exec();
+  return await Book.updateOne(
+    {
+      _id: mongoose.Types.ObjectId(id)
+    },
+    {
+      id,
+      typeId,
+      name,
+      author,
+      numberOf,
+      unitPrice,
+      publishBy,
+      publishAt,
+      image,
+      description
+    }
+  ).exec();
 };
 
 
 Book.delete = async (id) => {
     return await Book.deleteOne({
-        _id: id
+      _id: mongoose.Types.ObjectId(id)
     }).exec();
 };
 
@@ -86,18 +88,23 @@ Book.getAllByNumber = async (num) => {
     return await Book.find({}).limit(num).exec();
 };
 
-Book.getByCategory = async (category) => {
-    return await Book.find({
-        typeId: category
+Book.addViewCount = async (id) => {
+    return await Book.updateOne({
+      _id: mongoose.Types.ObjectId(id)
+    },{
+        $inc:{
+            viewCount:1
+        }
     }).exec();
 };
 
 
-Book.getPriceToSale = async (id) => {
-    let book = await Book.find({}).exec();
-    let ratio = await Book.getByNameId('ratio_price') || 1.05;
-    return book.unitPrice * ratio; //todo : get parameter from setting db
+Book.getByCategory = async category => {
+  return await Book.find({
+    typeId: category
+  }).exec();
 };
+
 
 Book.isValid = async ({
     id,

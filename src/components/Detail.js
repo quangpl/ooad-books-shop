@@ -22,7 +22,6 @@ export default class Detail extends React.Component {
                 Màn Hình Dell U2419H 24inch FullHD 8ms 60Hz IPS - Hàng Chính
                 Hãng
               </h2>
-              <Rate allowHalf defaultValue={2.5} />
               <p>
                 <b>Tác giả :</b> Richard Wiseman
               </p>

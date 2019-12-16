@@ -7,6 +7,32 @@ import { number } from 'prop-types';
 
 class BookManagement extends React.Component {
 
+    constructor(props){
+      super(props);
+
+      // this.state={
+      //   dataSource: props.dataSource,
+      //   selectedRow: '',
+      // }
+
+      this.state={
+            dataSource:[
+              {
+                id: "1",
+                name: "abc",
+                genre: "abc",
+                author: "abc",
+                realeaseYear: "1000",
+                publisher: "abc",
+                price: "20.000",
+                importDate: "1/1/1",
+                amount: 1000,
+              },
+        ],
+        selectedRow: '',
+      };
+    }
+
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -14,6 +40,19 @@ class BookManagement extends React.Component {
                 console.log("Received values of form: ", values);
             }
         });
+    }
+
+    onClickRow = (data) => {
+      return {
+          onClick: () => {
+              //this.handleDelete(data.id);
+              //console.log(data);
+              this.setState({
+                  selectedRow: data,
+              });
+              //console.log(this.state);
+          }
+      }
     }
 
     render() {
@@ -62,8 +101,10 @@ class BookManagement extends React.Component {
             width: "20%",
             render:()=>{
            return(
-                <div className="action">
-              <Button type="danger" icon="delete"/> 
+            <div className="action">
+              <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(this.state.selectedRow.id)}>
+                <Button type="danger" icon="delete" /> 
+              </Popconfirm>
               <Button type="primary" style={{marginLeft:5}} icon="edit"/> 
             </div>
            )
@@ -219,8 +260,9 @@ class BookManagement extends React.Component {
                 </div>
                   <Table
                     rowKey={row => row.id}
-                    dataSource={dataSource}
+                    dataSource={this.state.dataSource}
                     columns={columns}
+                    onRow={this.onClickRow}
                   />
               </div>
             );

@@ -11,7 +11,7 @@ import { Checkbox } from 'antd';
 //     console.log(`checked = ${e.target.checked}`);
 // }
 
-class BookManagement extends React.Component {
+class StaffManagement extends React.Component {
     constructor(props){
         super(props);
 
@@ -28,10 +28,10 @@ class BookManagement extends React.Component {
                     password: '2',
                     token: '3',
                     fullName: '4',
-                    phone: '5',
+                    phone: 5656,
                     address: '123',
-                    isAdmin: '1',
-                    employedTime: '123',
+                    isAdmin: true,
+                    startAt: '15/01/2019',
                 },
             ],
             selectedRow: '',
@@ -42,11 +42,11 @@ class BookManagement extends React.Component {
         console.log(data);
     }
 
-    onChange = e => {
-        this.setState((state, e) => {
-            state.isAdmin=e.target.checked; 
-        });
-    }
+    // onChange = e => {
+    //     this.setState((state, e) => {
+    //         state.isAdmin=e.target.checked; 
+    //     });
+    // }
 
     handleSubmit = e => {
         e.preventDefault();
@@ -79,7 +79,7 @@ class BookManagement extends React.Component {
     onEdit = (data) => {
       console.log(data.username);
       if(data!==null){
-        
+
       }
   }
 
@@ -204,7 +204,7 @@ class BookManagement extends React.Component {
                                 message: "Không bỏ trống trường này!"
                               }
                             ]
-                          })(<Input placeholder="Điện thoại" id='phone'/>)}
+                          })(<NumericInput placeholder="Điện thoại" id='phone'/>)}
                         </Form.Item>
                       </Col>
                     </Row>
@@ -230,7 +230,7 @@ class BookManagement extends React.Component {
                                 message: "Không bỏ trống trường này!"
                               }
                             ]
-                          })(<Checkbox onChange={this.onChange} id='isadmin'/>)}
+                          })(<Checkbox id='isadmin'/>)}
                         </Form.Item>
                       </Col>
                     </Row>
@@ -244,7 +244,7 @@ class BookManagement extends React.Component {
                                 message: "Không bỏ trống trường này!"
                               }
                             ]
-                          })(<Input placeholder="Ngày bắt đầu" id='startat'/>)}
+                          })(<DatePicker placeholder="Ngày bắt đầu" id='startat'/>)}
                         </Form.Item>
                       </Col>
                     </Row>
@@ -272,8 +272,8 @@ class BookManagement extends React.Component {
     }
 }
 
-const WrappedBookManagement = Form.create({ name: "book_management" })(
-    BookManagement
+const WrappedStaffManagement = Form.create({ name: "staff_management" })(
+    StaffManagement
   );
 
-export default WrappedBookManagement;
+export default WrappedStaffManagement;

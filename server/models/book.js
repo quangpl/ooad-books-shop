@@ -11,7 +11,8 @@ Book.add = async ({
   publishBy,
   publishAt,
   image,
-  description
+  description,
+  importDate
 }) => {
   let newBook = new Book({
     typeId,
@@ -22,7 +23,8 @@ Book.add = async ({
     publishBy,
     publishAt,
     image,
-    description
+    description,
+    importDate
   });
 
   await newBook.save();

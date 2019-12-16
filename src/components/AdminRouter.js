@@ -4,10 +4,13 @@ import Home from "./Home";
 import Admin from "./AdminRouter";
 import Login from "./Login";
 import BookManagement from "./BookManagement"
+import ReceiptManagement from './ReceiptManagement.js'
 import Register from "./Register";
 import CustomerManagement from './CustomerManagement.js';
 import StaffManagement from './StaffManagement.js';
-import ReceiptManagement from './ReceiptManagement.js';
+import GenreManagement from './GenreManagement.js';
+import SettingManagement from './SettingManagement.js';
+//import ReceiptManagement from './ReceiptManagement.js';
 import { Layout, Menu, Icon, Avatar, Input, Dropdown, Button } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
@@ -71,15 +74,27 @@ export default class UserRouter extends React.Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/admin/receipt">
-                  <Icon type="pie-chart" />
-                  <span>Quản lý hoá đơn</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="4">
                 <Link to="/admin/customer">
                   <Icon type="pie-chart" />
                   <span>Quản lý khách hàng</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/admin/receipt">
+                  <Icon type="pie-chart" />
+                  <span>Quản lý hóa đơn</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/admin/type">
+                  <Icon type="pie-chart" />
+                  <span>Quản lý thể loại</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="6">
+                <Link to="/admin/setting">
+                  <Icon type="pie-chart" />
+                  <span>Cài đặt chung</span>
                 </Link>
               </Menu.Item>
             </Menu>
@@ -113,6 +128,22 @@ export default class UserRouter extends React.Component {
               </div>
             </Header>
             <Content style={{ margin: "0 16px" }}>
+              {/* <<<<<<< HEAD
+              <Switch>
+                <Route  path="/admin/book">
+                  <BookManagement />
+                </Route>
+                <Route  path="/admin/customer">
+                  <CustomerManagement />
+                </Route>
+                <Route  path="/admin/staff">
+                  <StaffManagement />
+                </Route>
+                <Route  path="/admin/bill">
+                  {/* <ReceiptManagement /> 
+                </Route>
+              </Switch> */}
+
               <Route exact path="/admin" component={BookManagement} />
               <Route exact path="/admin/book" component={BookManagement} />
               <Route
@@ -125,6 +156,18 @@ export default class UserRouter extends React.Component {
                 exact
                 path="/admin/receipt"
                 component={ReceiptManagement}
+              />
+
+              <Route
+                exact
+                path="/admin/type"
+                component={GenreManagement}
+              />
+
+              <Route
+                exact
+                path="/admin/setting"
+                component={SettingManagement}
               />
             </Content>
             <Footer style={{ textAlign: "center" }}>

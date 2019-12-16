@@ -29,12 +29,16 @@ const BookSchema = new Schema(
       type: Number,
       required: true
     },
+     importDate: {
+      type: Number,
+      required: true
+    },
     publishBy: {
       type: String,
       required: true
     },
     publishAt: {
-      type: Number,
+      type: Date,
       required: true
     },
     description: {
@@ -55,7 +59,7 @@ const BookSchema = new Schema(
     viewCount:{
       type:Number,
       default:0
-    }
+    },
     tag: {
       type: [String],
       required: true,

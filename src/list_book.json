@@ -1,0 +1,92 @@
+[
+    {
+        "id": "0",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/70/9a/98/e6d54019a2079b9565114bce93b245b7.jpg",
+        "title": "Nóng Giận Là Bản Năng , Tĩnh Lặng Là Bản Lĩnh",
+        "discount": "36",
+        "price": "56900",
+        "originalPrice":"89000",
+        "isFavorite":1
+    },
+    {
+        "id": "1",
+        "image": "https://salt.tikicdn.com/cache/200x200/ts/product/eb/62/6b/0e56b45bddc01b57277484865818ab9b.jpg",
+        "title": "Đừng Lựa Chọn An Nhàn Khi Còn Trẻ",
+        "discount": "27",
+        "price": "59000",
+        "originalPrice":"81000",
+        "isFavorite":0
+    },
+    {
+        "id": "2",
+        "image": "https://salt.tikicdn.com/cache/200x200/ts/product/66/5f/5a/312bac222584d52fea5e9d644369b254.jpg",
+        "title": "Nhà Giả Kim",
+        "discount": "37",
+        "price": "43500",
+        "originalPrice":"69000",
+        "isFavorite":0
+    },
+    {
+        "id": "3",
+        "image": "https://salt.tikicdn.com/cache/200x200/ts/product/df/7d/da/cc713d2bcecd12ba82d5596ddbcac2d7.jpg",
+        "title": "Đắc Nhân Tâm (Khổ Lớn)",
+        "discount": "25",
+        "price": "57000",
+        "originalPrice":"76000",
+        "isFavorite":0
+    },
+    {
+        "id": "4",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/57/44/86/19de0644beef19b9b885d0942f7d6f25.jpg",
+        "title": "Đời Ngắn Đừng Ngủ Dài (Tái Bản)",
+        "discount": "36",
+        "price": "47998",
+        "originalPrice":"75000",
+        "isFavorite":1
+    },
+    {
+        "id": "5",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/fd/61/1d/a19424cfe9d113c32732d93cf2d5f59a.jpg",
+        "title": "Cân Bằng Cảm Xúc, Cả Lúc Bão Giông",
+        "discount": "40",
+        "price": "57600",
+        "originalPrice":"96000",
+        "isFavorite":1
+    },
+    {
+        "id": "6",
+        "image": "https://salt.tikicdn.com/cache/200x200/ts/product/af/a1/4b/92477ec9b6688060b2b5d2022a60d3e6.jpg",
+        "title": "Làm Bạn Với Bầu Trời (Bìa Mềm) (Tặng Kèm Khung Ảnh Số Lượng Có Hạn)",
+        "discount": "31",
+        "price": "75900",
+        "originalPrice":"110000",
+        "isFavorite":0
+    },
+    {
+        "id": "7",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/a5/d8/34/841d0260cc305115f6753c25caadd5b0.jpg",
+        "title": "Đọc Vị Bất Kỳ Ai (Tái Bản)",
+        "discount": "36",
+        "price": "43900",
+        "originalPrice":"69000",
+        "isFavorite":0
+    },
+    {
+        "id": "8",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/25/d6/2c/f88080bba78a779fb78e1b76b73a9813.jpg",
+        "title": "Sống Thực Tế Giữa Đời Thực Dụng",
+        "discount": "40",
+        "price": "58800",
+        "originalPrice":"98000",
+        "isFavorite":1
+    },
+    {
+        "id": "9",
+        "image":"https://salt.tikicdn.com/cache/200x200/ts/product/56/3f/4f/f4e6621e69775643d22604bccef281bf.jpg",
+        "title": "Sapiens: Lược Sử Loài Người (Tái Bản Có Chỉnh Sửa) ",
+        "discount": "26",
+        "price": "155298",
+        "originalPrice":"20900",
+        "isFavorite":0
+    }
+]

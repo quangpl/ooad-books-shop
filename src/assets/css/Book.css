@@ -1,5 +1,5 @@
 .book{
-    padding: 0% 0.5% 0.5% 0.5%;
+    padding: 0% 5px 5px 5px;
     margin: 3%;
     transition: 0.1s;
     border-radius: 2%;
@@ -14,21 +14,31 @@
     justify-content: space-between;
 }
 .title_book{
-    font-size: 1.5vw;
+    font-size: 14px;
+    font-weight: 190;
+    overflow: hidden;
 }
 
 .image_book{
     width: 100%;
     margin-top: 5px;
 }
-.origin_price{
-    color: #7F7F7F;
-    font-size: 1vw;
+.price-info{
+    display: flex;
+    flex-direction: column;
+}
+.original-price{
+    display: block;
+    margin-left: 0px;
+    color: rgb(120, 120, 120) !important; 
+    font-size: 13px;
+    font-weight: 300;
 }
 .price{
-    
-    font-size: 1.5vw;
-    color: #242424;
+    color: rgb(36, 36, 36);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0px;
 }
 
 .discount{

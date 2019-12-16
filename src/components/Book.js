@@ -14,24 +14,29 @@ class Book extends React.Component {
     }
     
   render(){
-      return(
-        <div class="book">
-                <Link>  
-                    <span class="discount"> -{this.props.salePricePercent}%  </span>
-                    <img src={this.props.image} class="image_book"></img>
-                </Link>
+      return (
+        <Link to="/detail">
+          <div class="book">
+            <span class="discount"> -{this.props.discount}% </span>
+            <img src={this.props.image} class="image_book"></img>
 
-                <h3 class="title_book">{this.props.name}</h3>
-                
-                <div class="book_info">
-                    <strong class="price">{this.props.price}</strong>
-                    <span class="origin_price"><strike>{this.props.originalPrice}</strike></span> 
-                    
-                    <Button size="small" shape="circle" icon="heart" />
-                </div>
-        </div>   
+            <h3 class="title_book">{this.props.name}</h3>
 
-      )
+            <div class="book_info">
+              <div className="price-info">
+                <b class="price">
+                  {this.props.price} đ 
+                </b>
+
+                <p className="original-price">
+                  <strike>{this.props.originalPrice} đ</strike>
+                </p>
+              </div>
+              <Button shape="circle" icon="heart" />
+            </div>
+          </div>
+        </Link>
+      );
   }
 }
 

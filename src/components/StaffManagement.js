@@ -149,7 +149,7 @@ class BookManagement extends React.Component {
 
             return (
               <div>
-                <h1>Quản Lý Sách</h1>
+                <h1>Quản Lý Nhân Viên</h1>
                 <div>
                   <Form
                     onSubmit={this.handleSubmit}

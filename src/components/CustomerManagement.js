@@ -132,7 +132,7 @@ class BookManagement extends React.Component {
 
             return (
               <div>
-                <h1>Quản Lý Sách</h1>
+                <h1>Quản Lý Khách Hàng</h1>
                 <div>
                   <Form
                     onSubmit={this.handleSubmit}
@@ -240,7 +240,7 @@ class BookManagement extends React.Component {
                 </div>
                   <Table
                     rowKey={row => row.id}
-                    dataSource={this.state.dataSource}
+                    dataSource={dataSource}
                     columns={columns}
                     onRow={this.onClickRow}
                   />

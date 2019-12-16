@@ -11,13 +11,13 @@ class BookManagement extends React.Component {
         super(props);
 
         this.state={
-            dataSource:{
+            dataSource:[{
                 customerId: '1',
                 employeeId: '1',
                 value: '2000',
                 books: ['1', '2', '3'],
                 isPaid: '1',
-            },
+            }],
             selectedRow: '',
         };
     }
@@ -90,7 +90,7 @@ class BookManagement extends React.Component {
 
             return (
               <div>
-                <h1>Quản Lý Sách</h1>
+                <h1>Quản Lý Hoá Đơn</h1>
                 <div>
                   <Form
                     onSubmit={this.handleSubmit}

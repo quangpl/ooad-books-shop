@@ -6,7 +6,7 @@ import { DatePicker } from 'antd';
 import { number } from 'prop-types';
 //import { Responsive } from "react-responsive";
 
-class BookManagement extends React.Component {
+class CustomerManagement extends React.Component {
     constructor(props){
       super(props);
 
@@ -15,17 +15,19 @@ class BookManagement extends React.Component {
       //   selectedRow: {},
       // }
       this.state={
-        dataSource: {
-          id: "2",
-          name: "abc",
-          password: "123",
-          token: "sdf2",
-          phone: "00000000000",
-          address: "dfsaf",
-          email: "sdafsdf@gmail.com",
-          debtMoney: "2000",
-          startAt: "2/2/2019",
-        },
+        dataSource: [
+          {
+            id: "2",
+            name: "abc",
+            password: "123",
+            token: "sdf2",
+            phone: "00000000000",
+            address: "dfsaf",
+            email: "sdafsdf@gmail.com",
+            debtMoney: "2000",
+            startAt: "2/2/2019",
+          }
+        ],
         selectedRow: {},
       }
     }
@@ -116,19 +118,19 @@ class BookManagement extends React.Component {
           }
         ];
 
-            var dataSource = [
-              {
-                id: "2",
-                name: "abc",
-                password: "123",
-                token: "sdf2",
-                phone: "00000000000",
-                address: "dfsaf",
-                email: "sdafsdf@gmail.com",
-                debtMoney: "2000",
-                startAt: "2/2/2019",
-              }
-            ];
+            // var dataSource = [
+            //   {
+            //     id: "2",
+            //     name: "abc",
+            //     password: "123",
+            //     token: "sdf2",
+            //     phone: "00000000000",
+            //     address: "dfsaf",
+            //     email: "sdafsdf@gmail.com",
+            //     debtMoney: "2000",
+            //     startAt: "2/2/2019",
+            //   }
+            // ];
 
             return (
               <div>
@@ -255,8 +257,8 @@ class BookManagement extends React.Component {
     }
 }
 
-const WrappedBookManagement = Form.create({ name: "book_management" })(
-    BookManagement
+const WrappedCustomerManagement = Form.create({ name: "customer_management" })(
+    CustomerManagement
   );
 
-export default WrappedBookManagement;
+export default WrappedCustomerManagement;

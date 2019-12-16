@@ -7,7 +7,7 @@ import BookManagement from "./BookManagement"
 import Register from "./Register";
 import CustomerManagement from './CustomerManagement.js';
 import StaffManagement from './StaffManagement.js';
-import ReceiptManagement from './ReceiptManagement.js';
+//import ReceiptManagement from './ReceiptManagement.js';
 import { Layout, Menu, Icon, Avatar, Input, Dropdown, Button } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
@@ -143,7 +143,7 @@ export default class UserRouter extends React.Component {
                   <StaffManagement />
                 </Route>
                 <Route  path="/admin/bill">
-                  <ReceiptManagement />
+                  {/* <ReceiptManagement /> */}
                 </Route>
               </Switch>
             </Content>

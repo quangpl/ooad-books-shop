@@ -11,7 +11,7 @@ import { Checkbox } from 'antd';
 //     console.log(`checked = ${e.target.checked}`);
 // }
 
-class BookManagement extends React.Component {
+class StaffManagement extends React.Component {
     constructor(props){
         super(props);
 
@@ -79,7 +79,7 @@ class BookManagement extends React.Component {
     onEdit = (data) => {
       console.log(data.username);
       if(data!==null){
-        
+
       }
   }
 
@@ -272,8 +272,8 @@ class BookManagement extends React.Component {
     }
 }
 
-const WrappedBookManagement = Form.create({ name: "book_management" })(
-    BookManagement
+const WrappedStaffManagement = Form.create({ name: "staff_management" })(
+    StaffManagement
   );
 
-export default WrappedBookManagement;
+export default WrappedStaffManagement;

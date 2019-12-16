@@ -6,7 +6,7 @@ import { DatePicker } from 'antd';
 import { number } from 'prop-types';
 //import { Responsive } from "react-responsive";
 
-class BookManagement extends React.Component {
+class ReceiptManagement extends React.Component {
     constructor(props){
         super(props);
 
@@ -34,6 +34,14 @@ class BookManagement extends React.Component {
     render() {
         const { getFieldDecorator } = this.props.form;
 
+        var dataSource={
+          customerId: '1',
+          employeeId: '1',
+          value: '2000',
+          books: ['1', '2', '3'],
+          isPaid: '1',
+        };
+
         var columns = [
           {
             title: "Customer Name",
@@ -55,8 +63,8 @@ class BookManagement extends React.Component {
           },
           {
             title: "Detail",
-            dataIndex: "books",
-            width: "15%",
+            //dataIndex: "books",
+            //width: "15%",
             render:()=>{
                 return(
                     <div className="action">
@@ -198,7 +206,7 @@ class BookManagement extends React.Component {
                 </div>
                   <Table
                     rowKey={row => row.id}
-                    dataSource={this.state.dataSource}
+                    dataSource={dataSource}
                     columns={columns}
                   />
                 {/* <Responsive displayIn={["Mobile", "Tablet"]}>
@@ -212,8 +220,8 @@ class BookManagement extends React.Component {
     }
 }
 
-const WrappedBookManagement = Form.create({ name: "book_management" })(
-    BookManagement
+const WrappedReceiptManagement = Form.create({ name: "receipt_management" })(
+    ReceiptManagement
   );
 
-export default WrappedBookManagement;
+export default WrappedReceiptManagement;

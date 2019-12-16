@@ -4,7 +4,6 @@ import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Sel
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
-import { Responsive } from "react-responsive";
 
 class BookManagement extends React.Component {
 
@@ -223,12 +222,6 @@ class BookManagement extends React.Component {
                     dataSource={dataSource}
                     columns={columns}
                   />
-                <Responsive displayIn={["Mobile", "Tablet"]}>
-                  This is a MOBILE/TABLET
-                </Responsive>
-                <Responsive displayIn={["Laptop"]}>
-                  This is a LAPTOP or a Larger screen
-                </Responsive>
               </div>
             );
     }

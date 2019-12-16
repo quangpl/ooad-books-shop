@@ -26,13 +26,12 @@ export default class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Router>
             <UserRouter />
-          </Route>
-          <Route exact path="/admin">
+          </Router>
+          <Router>
             <AdminRouter />
-          </Route>
-          
+          </Router>
         </Switch>
       </Router>
     );

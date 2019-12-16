@@ -112,6 +112,12 @@ Customer.getById = async (id) => {
     }).exec();
 };
 
+Customer.getByToken = async token => {
+  return await Customer.findOne({
+    token
+  }).exec();
+};
+
 Customer.getAll = async () => {
     return await Customer.find({}).exec();
 };

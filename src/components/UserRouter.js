@@ -2,10 +2,11 @@ import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
 import Admin from "./AdminRouter";
+import Cart from "./Cart"
 import Login from "./Login";
 import Register from "./Register";
 import { Layout, Menu, Icon, Avatar, Input, Dropdown,Button } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 const { Search } = Input;
@@ -59,7 +60,6 @@ export default class UserRouter extends React.Component {
                              console.log(collapsed, type);
                            }}
                          >
-                           <div className="logo" />
                            <Menu
                              theme="dark"
                              defaultSelectedKeys={["1"]}
@@ -116,6 +116,12 @@ export default class UserRouter extends React.Component {
                                backgroundColor: "white"
                              }}
                            >
+                             <Link to="/">
+                               <Button size={64} icon="home">
+                                 Home
+                               </Button>
+                             </Link>
+
                              <Search
                                placeholder="Input book name"
                                enterButton="Search"
@@ -140,31 +146,30 @@ export default class UserRouter extends React.Component {
                                    <b>Guest</b>
                                  </Dropdown>
                                </div>
-
-                               <Button
-                                 type="primary"
-                                 icon="shopping-cart"
-                                 size={64}
-                               >
-                                 Cart
-                               </Button>
+                               <Link to="/cart">
+                                 <Button
+                                   type="primary"
+                                   icon="shopping-cart"
+                                   size={64}
+                                 >
+                                   Cart
+                                 </Button>
+                               </Link>
                              </div>
                            </Header>
                            <Content style={{ margin: "0 16px" }}>
-                             <Switch>
-                               <Route exact path="/">
-                                 <Home />
-                               </Route>
-                               <Route exact path="/login">
-                                 <Login />
-                               </Route>
-                               <Route exact path="/register">
-                                 <Register />
-                               </Route>
-                               <Route exact path="/detail">
-                                 <Detail />
-                               </Route>
-                             </Switch>
+                             <Route exact path="/" component={Home} />
+
+                             <Route exact path="/login" component={Login} />
+                             <Route
+                               exact
+                               path="/register"
+                               component={Register}
+                             />
+
+                             <Route exact path="/detail" component={Detail} />
+
+                             <Route exact path="/cart" component={Cart} />
                            </Content>
                            <Footer style={{ textAlign: "center" }}>
                              Ant Design ©2018 Created by Ant UED

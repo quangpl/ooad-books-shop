@@ -5,6 +5,9 @@ import Admin from "./AdminRouter";
 import Login from "./Login";
 import BookManagement from "./BookManagement"
 import Register from "./Register";
+import CustomerManagement from './CustomerManagement.js';
+import StaffManagement from './StaffManagement.js';
+import ReceiptManagement from './ReceiptManagement.js';
 import { Layout, Menu, Icon, Avatar, Input, Dropdown, Button } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
@@ -63,22 +66,25 @@ export default class UserRouter extends React.Component {
               </Menu.Item>
 
               <Menu.Item key="2">
-                <Icon type="desktop" />
-                <span>Option 2</span>
+                <Link to="/admin/customer">
+                  <Icon type="pie-chart" />
+                  <span>Quản lý khách hàng</span>
+                </Link>
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    <span>User</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="3">Tom</Menu.Item>
-                <Menu.Item key="4">Bill</Menu.Item>
+                
+              <Menu.Item key="3">
+                <Link to="/admin/staff">
+                  <Icon type="pie-chart" />
+                  <span>Quản lý nhân viên</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/admin/bill">
+                  <Icon type="pie-chart" />
+                  <span>Quản lý phiếu thu</span>
+                </Link>
+              </Menu.Item>
                 <Menu.Item key="5">Alex</Menu.Item>
-              </SubMenu>
               <SubMenu
                 key="sub2"
                 title={
@@ -129,6 +135,15 @@ export default class UserRouter extends React.Component {
               <Switch>
                 <Route  path="/admin/book">
                   <BookManagement />
+                </Route>
+                <Route  path="/admin/customer">
+                  <CustomerManagement />
+                </Route>
+                <Route  path="/admin/staff">
+                  <StaffManagement />
+                </Route>
+                <Route  path="/admin/bill">
+                  <ReceiptManagement />
                 </Route>
               </Switch>
             </Content>

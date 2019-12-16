@@ -1,13 +1,26 @@
 import React from 'react';
 import NumericInput from './NumericInput';
-import EditableTable from './EditableTable';
-import dataSource from '../Receipts.json';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Select, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
+//import { Responsive } from "react-responsive";
 
-class CustomerManagement extends React.Component {
+class BookManagement extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state={
+            dataSource:{
+                customerId: '1',
+                employeeId: '1',
+                value: '2000',
+                books: ['1', '2', '3'],
+                isPaid: '1',
+            },
+            selectedRow: '',
+        };
+    }
 
     handleSubmit = e => {
         e.preventDefault();
@@ -18,67 +31,189 @@ class CustomerManagement extends React.Component {
         });
     }
 
-    handleClick = key => {
-        //const dataSource=[...this.state.dataSource];
-        window.open('https://www.geeksforgeeks.org', '_blank');
-    }
-
     render() {
         const { getFieldDecorator } = this.props.form;
 
         var columns = [
-            {
-                title: 'Receipt No.',
-                dataIndex: 'id',
-                width: '10%',
-            },
-            {
-                title: 'Customer Name',
-                dataIndex: 'customerName',
-                width: '35%',
-                editable: true,
-            },
-            {
-                title: 'Address',
-                dataIndex: 'address',
-                width: '30%',
-                editable: true,
-            },
-            {
-                title: 'Date',
-                dataIndex: 'date',
-                width: '15%',
-                editable: true,
-            },
-            {
-                title: 'Fee Paid',
-                dataIndex: 'feePaid',
-                width: '10%',
-                editable: true,
-            },
-            {
-                title: 'Receipt',
-                dataIndex: 'receipt',
-                align: 'center',
-                render: () =>
-                    <Button type='primary' icon='file' theme='twoTone' onClick={this.handleClick} />
-            },
+          {
+            title: "Customer Name",
+            dataIndex: "customerID",
+            width: "18%",
+            editable: true
+          },
+          {
+            title: "Employee Name",
+            dataIndex: "phone",
+            width: "12%",
+            editable: true
+          },
+          {
+            title: "Value",
+            dataIndex: "address",
+            width: "15%",
+            editable: true
+          },
+          {
+            title: "Detail",
+            dataIndex: "books",
+            width: "15%",
+            render:()=>{
+                return(
+                    <div className="action">
+                        <Button type="primary" style={{marginLeft:5}} icon="book" /> 
+                    </div>
+                )
+            }
+          },
+          {
+            title: "Is Paid",
+            dataIndex: "debtMoney",
+            width: "15%",
+            editable: true
+          },
+          {
+            title: "Action",
+            dataIndex: "action",
+            width: "20%",
+            render:()=>{
+                return(
+                    <div className="action">
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(this.state.selectedRow.id)}>
+                            <Button type="danger" icon="delete" /> 
+                        </Popconfirm>
+                        <Button type="primary" style={{marginLeft:5}} icon="edit"/> 
+                    </div>
+                )
+            }
+          }
         ];
 
-        return (
-            <div>
+            return (
+              <div>
                 <h1>Quản Lý Sách</h1>
-                
-                <Row style={{marginTop: '2%'}}>
-                    <EditableTable dataSource={dataSource} columns={columns} />
-                </Row>
-            </div>
-        );
+                <div>
+                  <Form
+                    onSubmit={this.handleSubmit}
+                    wrapperCol={{ span: 23 }}
+                    labelCol={{ span: 5 }}
+                  >
+                    <Row>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Tên khách hàng" labelAlign="left">
+                          {getFieldDecorator("customername", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<Input placeholder="Tên sách" />)}
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Mật khẩu" labelAlign="left">
+                          {getFieldDecorator("password", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<Input placeholder="Mật khẩu" />)}
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Số điện thoại" labelAlign="left">
+                          {getFieldDecorator("phone", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<Input placeholder="Số điện thoại" />)}
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Địa chỉ" labelAlign="left">
+                          {getFieldDecorator("address", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<Input placeholder="Địa chỉ" />)}
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Email" labelAlign="left">
+                          {getFieldDecorator("email", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<Input placeholder="Email" />)}
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Tiền nợ" labelAlign="left">
+                          {getFieldDecorator("debtmoney", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<NumericInput />)}
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={24} md={12} sm={12} lg={12}>
+                        <Form.Item label="Ngày bắt đầu" labelAlign="left">
+                          {getFieldDecorator("startat", {
+                            rules: [
+                              {
+                                required: true,
+                                message: "Không bỏ trống trường này!"
+                              }
+                            ]
+                          })(<DatePicker placeholder="Ngày bắt đầu" />)}
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row type="flex" justify="center">
+                      <Button type="primary" htmlType="submit">
+                        Thêm
+                      </Button>
+                    </Row>
+                  </Form>
+                </div>
+                  <Table
+                    rowKey={row => row.id}
+                    dataSource={this.state.dataSource}
+                    columns={columns}
+                  />
+                {/* <Responsive displayIn={["Mobile", "Tablet"]}>
+                  This is a MOBILE/TABLET
+                </Responsive>
+                <Responsive displayIn={["Laptop"]}>
+                  This is a LAPTOP or a Larger screen
+                </Responsive> */}
+              </div>
+            );
     }
 }
 
-const WrappedStaffManagement = Form.create({ name: "staff_management" })(
-    CustomerManagement
+const WrappedBookManagement = Form.create({ name: "book_management" })(
+    BookManagement
   );
 
-export default WrappedStaffManagement;
+export default WrappedBookManagement;

@@ -10,15 +10,11 @@ class Cart extends React.Component{
         return(
             <div>
                 <div class="title">
-                    <Row>
-                        <Col span={24}>Giỏ hàng
-                            <span> ({this.props.numberOfProduct} sản phẩm)</span>
-                        </Col>
-                    </Row>
+                    Giỏ Hàng
                 </div>
 
                 <Row>
-                    <Col span={18}>
+                    <Col xs={24} sm={12} md={16} lg={20}>
                         <div class="list_book_cart">    
                         
                                 <BookCart name="Grace change Everything" link_image="https://www.gracethread.com/wp-content/uploads/2016/08/GCE-book-3D-600x600.jpg" author="Janna Wright" price="112.800" discount="40" originalPrice="188.00" numberOfBook="7"></BookCart>
@@ -32,7 +28,7 @@ class Cart extends React.Component{
                         </div>
                     </Col>
 
-                    <Col span={6}>
+                      <Col xs={24} sm={12} md={8} lg={4}>
                         <div class="box_bill_cart">
                             <div class="box_money_cart">
                                 <span>Tạm tính: </span>
@@ -44,14 +40,6 @@ class Cart extends React.Component{
                             </div>
                             <div class="proceed_to_order">
                                 <Button type="danger" size="large">Tiến hành đặt hàng</Button>
-                            </div>
-                            <div>
-                                <Input
-                                    placeholder="Nhập mã giảm giá..."
-                                    enterButton="Search"
-                                    size="large"
-                                    onSearch={value => console.log(value)}
-                                />
                             </div>
                         </div>
                     </Col>

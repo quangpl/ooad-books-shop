@@ -42,6 +42,10 @@ const BookSchema = new Schema(
       required: true,
       default: "https://via.placeholder.com/600"
     },
+    viewCount:{
+      type:Number,
+      default:0
+    }
     tag: {
       type: [String],
       required: true,

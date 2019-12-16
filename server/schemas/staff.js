@@ -35,7 +35,7 @@ const StaffSchema = new Schema(
       required: true,
       default: false
     },
-    employedTime: {
+    startAt: {
       type: Date,
       required: true
     }

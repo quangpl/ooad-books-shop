@@ -7,12 +7,16 @@ Customer.register = async ({
     name,
     password,
     email,
+    address,
+    phone
 }) => {
     let hashPassword = await bcrypt.hash(password, 6);
     let newCustomer = new Customer({
-        name: name,
-        password: hashPassword,
-        email: email,
+      name,
+      password: hashPassword,
+      email,
+      address,
+      phone
     });
 
     await newCustomer.save();
@@ -110,6 +114,12 @@ Customer.getById = async (id) => {
     return await Customer.findOne({
         _id: mongoose.Types.ObjectId(id)
     }).exec();
+};
+
+Customer.getByToken = async token => {
+  return await Customer.findOne({
+    token
+  }).exec();
 };
 
 Customer.getAll = async () => {

@@ -4,7 +4,6 @@ import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Sel
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
-//import { Responsive } from "react-responsive";
 
 class BookManagement extends React.Component {
 
@@ -41,6 +40,11 @@ class BookManagement extends React.Component {
                 console.log("Received values of form: ", values);
             }
         });
+    }
+
+    handleDelete = data =>{
+      const dataSource = [...this.state.dataSource];
+      this.setState({ dataSource: dataSource.filter(item => item.id !== data) });
     }
 
     onClickRow = (data) => {
@@ -265,12 +269,6 @@ class BookManagement extends React.Component {
                     columns={columns}
                     onRow={this.onClickRow}
                   />
-                {/* <Responsive displayIn={["Mobile", "Tablet"]}>
-                  This is a MOBILE/TABLET
-                </Responsive>
-                <Responsive displayIn={["Laptop"]}>
-                  This is a LAPTOP or a Larger screen
-                </Responsive> */}
               </div>
             );
     }

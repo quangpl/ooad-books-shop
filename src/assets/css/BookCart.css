@@ -1,0 +1,43 @@
+.book_cart{
+    display: flex;
+    flex-direction: row;
+    margin: 0% 1% 1% 1%;
+    padding: 3%;
+    border-radius: 1%;
+    background-color: #FFFFFF;
+}
+
+.book_cart_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.name_book_cart{
+    font-size: 1.5em;
+}
+.image_book_cart{
+    width: 70%;
+}
+
+.author_book_cart{
+    font-size: 1.2em;
+    color: black;
+}
+
+.price_book_cart{
+    font-size: 1.4em;
+    color: black;
+    
+}
+
+.discount_book_cart{
+    color:black;
+}
+
+.originalPrice{
+    
+}
+
+.input_number{
+    float: right;
+}

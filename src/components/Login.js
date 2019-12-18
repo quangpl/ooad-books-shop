@@ -1,5 +1,7 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col } from "antd";
+import { Form, Icon, Input, Button, Checkbox, Row, Col, message } from "antd";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import CustomerService from "../services/customer";
 
 const IconFont = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js"
@@ -17,9 +19,17 @@ class NormalLoginForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async(err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+
+         const customerService = new CustomerService();
+        const res = await customerService.login(values);
+        if(res){
+         window.location.href="/";
+         return true;
+        }else{
+          message.error("Wrong password")
+        }
       }
     });
   };
@@ -31,12 +41,12 @@ class NormalLoginForm extends React.Component {
         {/* Textbox Username */}
         <Form.Item>
           <h1 style={{ fontSize: "20px" }}>Login</h1>
-          {getFieldDecorator("username", {
-            rules: [{ required: true, message: "Please input your username!" }]
+          {getFieldDecorator("email", {
+            rules: [{ required: true, message: "Please input your email!" }]
           })(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Username"
+              placeholder="Email"
             />
           )}
         </Form.Item>
@@ -57,22 +67,6 @@ class NormalLoginForm extends React.Component {
 
         {/* Quên mật khẩu / Remember -> tạo col */}
         <Form.Item>
-          <div>
-            <Row>
-              <Col span={12}>
-                {getFieldDecorator("remember", {
-                  valuePropName: "checked",
-                  initialValue: true
-                })(<Checkbox>Remember me</Checkbox>)}
-              </Col>
-
-              <Col span={12}>
-                <a className="login-form-forgot " href="">
-                  Forgot password
-                </a>
-              </Col>
-            </Row>
-          </div>
           {/* Button login*/}
           <Button
             block
@@ -92,7 +86,7 @@ class NormalLoginForm extends React.Component {
             Continue with Google +
           </Button> */}
           {/* Register now */}
-          Or <a href="">register now!</a>
+          Or <Link to="/register">Register now!</Link>
         </Form.Item>
       </Form>
     );

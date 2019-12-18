@@ -2,104 +2,166 @@ import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
 import Admin from "./AdminRouter";
-import ListBook from "./ListBook";
+import Cart from "./Cart";
 import Login from "./Login";
+import CustomerService from "../services/customer";
+
 import Register from "./Register";
-import { Layout, Menu, Icon, Avatar } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Layout, Menu, Icon, Avatar, Input, Dropdown, Button } from "antd";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
+const { Search } = Input;
 
 export default class UserRouter extends React.Component {
-  state = {
-    collapsed: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapsed: false,
+      visible: false,
+      isLoad: true,
+      authInfo: {}
+    };
+  }
 
   onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
+  handleMenuClick = e => {
+    if (e.key === "3") {
+      this.setState({ visible: false });
+    }
+  };
+  handleVisibleChange = flag => {
+    this.setState({ visible: flag });
+  };
 
+  async componentDidMount(){
+    const customerService = new CustomerService();
+    const authInfo = await customerService.auth();
+    await this.setState({
+      authInfo
+    });
+    await this.setState({
+      isLoad: false
+    });
+  }
   render() {
+    const menu = (
+      <Menu onClick={this.handleMenuClick}>
+        {this.state.authInfo.name ? (
+          <Menu.Item
+            key="1"
+            onClick={() => {
+              localStorage.setItem("token", undefined);
+              this.setState({
+                authInfo: {}
+              });
+            }}
+          >
+            Logout
+          </Menu.Item>
+        ) : (
+          <Menu.Item key="1" onClick={() => {}}>
+            <Link to="/login"> Login </Link>
+          </Menu.Item>
+        )}
+      </Menu>
+    );
     return (
       <Router>
-        <Layout style={{ minHeight: "100vh" }}>
+        <Layout>
           <Sider
-            collapsible
-            collapsed={this.state.collapsed}
-            onCollapse={this.onCollapse}
+            breakpoint="lg"
+            collapsedWidth="0"
+            onBreakpoint={broken => {
+              console.log(broken);
+            }}
+            onCollapse={(collapsed, type) => {
+              console.log(collapsed, type);
+            }}
           >
-            <h2>User</h2>
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
               <Menu.Item key="1">
-                <Icon type="home" />
-                <Link to="/" />
+                <Icon type="pie-chart" />
+                <span>Truyện</span>
               </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="desktop" />
-                <Link to="/detail" />
+                <span>Sách kinh doanh</span>
               </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    <span>User</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="3">Tom</Menu.Item>
-                <Menu.Item key="4">Bill</Menu.Item>
-                <Menu.Item key="5">Alex</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="team" />
-                    <span>Team</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="6">Team 1</Menu.Item>
-                <Menu.Item key="8">Team 2</Menu.Item>
-              </SubMenu>
-              <Menu.Item key="9">
-                <Icon type="file" />
-                <span>File</span>
+              <Menu.Item key="3">
+                <Icon type="desktop" />
+                <span>Tiểu thuyết</span>
               </Menu.Item>
             </Menu>
           </Sider>
           <Layout>
-            <Header style={{ background: "#fff", padding: 0 }}>
-              <Avatar
-                style={{
-                  backgroundColor: "#001529",
-                  marginLeft: 12
-                }}
+            <Header
+              theme="light"
+              style={{
+                zIndex: 1,
+                display: "flex",
+                justifyContent: "space-between",
+                alignContent: "center",
+                alignItems: "center",
+                backgroundColor: "white"
+              }}
+            >
+              <Link to="/">
+                <Button size={64} icon="home">
+                  Home
+                </Button>
+              </Link>
+
+              <Search
+                placeholder="Input book name"
+                enterButton="Search"
                 size="large"
+                style={{
+                  flex: 0.6
+                }}
+                onSearch={value => console.log(value)}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  alignContentL: "center",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flex: 0.3
+                }}
               >
-                EZ
-              </Avatar>
+                <div>
+                  <Avatar shape="cirlce" size={40} icon="user" />
+                  <Dropdown overlay={menu}>
+                    <b>
+                      {this.state.authInfo.name
+                        ? this.state.authInfo.name
+                        : "Guest"}
+                    </b>
+                  </Dropdown>
+                </div>
+                <Link to="/cart">
+                  <Button type="primary" icon="shopping-cart" size={64}>
+                    Cart
+                  </Button>
+                </Link>
+              </div>
             </Header>
-            <Content style={{ margin: "0 16px" }}>
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route exact path="/login">
-                  <Login />
-                </Route>
-                <Route exact path="/register">
-                  <Register />
-                </Route>
-                <Route exact path="/detail">
-                  <Detail />
-                </Route>
-              </Switch>
+            <Content style={{ margin: "0 16px", height: "100%" }}>
+              <Route exact path="/" component={Home} />
+
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+
+              <Route exact path="/detail/:id" component={Detail} />
+
+              <Route exact path="/cart" component={Cart} />
             </Content>
             <Footer style={{ textAlign: "center" }}>
-              EZBooks @2019 Created by EZGroup
+              Ant Design ©2018 Created by Ant UED
             </Footer>
           </Layout>
         </Layout>

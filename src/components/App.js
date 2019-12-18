@@ -1,17 +1,15 @@
 import React from "react";
 import Detail from "./Detail";
 import Home from "./Home";
-import AdminRouter from "./AdminRouter"
+import AdminRouter from "./AdminRouter";
 import UserRouter from "./UserRouter";
 
-import ListBook from "./ListBook"
-import Login from "./Login"
-import Register from "./Register"
+import Login from "./Login";
+import Register from "./Register";
 import { Layout, Menu, Icon, Avatar } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
-
 
 export default class App extends React.Component {
   state = {
@@ -25,16 +23,18 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <UserRouter />
-          </Route>
-          <Route exact path="/admin">
-            <AdminRouter />
-          </Route>
-        </Switch>
-      </Router>
+      <div className="app">
+        <Router>
+          <Switch>
+            <Router path="/admin">
+              <AdminRouter />
+            </Router>
+            <Router>
+              <UserRouter />
+            </Router>
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }

@@ -47,7 +47,7 @@ class Admin {
   }
 
   async updateBook({
-     id,
+     _id,
     typeId,
     name,
     author,
@@ -57,17 +57,17 @@ class Admin {
     image,
     description,
   }){
- const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`,{
-       id,
-    typeId,
-    name,
-    author,
-    numberOf,
-    unitPrice,
-    publishBy,
-    image,
-    description,
-    });
+ const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`, {
+   _id,
+   typeId,
+   name,
+   author,
+   numberOf,
+   unitPrice,
+   publishBy,
+   image,
+   description
+ });
     return true;
   }
 

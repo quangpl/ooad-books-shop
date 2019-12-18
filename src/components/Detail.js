@@ -1,13 +1,13 @@
 import React from "react";
 import DetailDescription from "./DetailDescription";
 import DetailComment from "./DetailComment";
+import _ from "lodash";
 import CustomerService from "../services/customer"
 import { Row, Col, Divider, Typography, InputNumber, Button } from "antd";
 import { Layout, Menu, Breadcrumb, Icon, Avatar, Rate } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
-
 export default class Detail extends React.Component {
   constructor(props){
 super(props);
@@ -66,6 +66,16 @@ console.log(await customerService.getById(this.props.match.params.id));
                 shape="round"
                 icon="shopping-cart"
                 size="large"
+                onClick={()=>{
+                  //  let list = localStorage.getItem("cart");
+                  //  if(!list){
+                  //    list = new Array(10);
+                  //  }
+                  //  list.push(this.props.match.params.id);
+                  //  list = _.uniq(list);
+                  // localStorage.setItem("cart", list);
+                  alert("Add to cart");
+                }}
               >
                 Chọn mua
               </Button>

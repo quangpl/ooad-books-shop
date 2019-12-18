@@ -31,7 +31,7 @@ Book.add = async ({
   return newBook;
 };
 
-Book.update = async ({
+Book.updateBook = async ({
   id,
   typeId,
   name,
@@ -42,22 +42,25 @@ Book.update = async ({
   image,
   description
 }) => {
-  return await Book.updateOne(
+  const res = await Book.findOneAndUpdate(
     {
-      _id: mongoose.Types.ObjectId(id)
+      _id: id
     },
     {
-      id,
-      typeId,
-      name,
-      author,
-      numberOf,
-      unitPrice,
-      publishBy,
-      image,
-      description
+      $set: {
+        typeId,
+        name,
+        author,
+        numberOf,
+        unitPrice,
+        publishBy,
+        image,
+        description
+      }
     }
   ).exec();
+
+  console.log(res);
 };
 
 

@@ -10,6 +10,7 @@ const customerModel = require("../models/customer");
             error: true,
             message:"Request is not valid"
         })
+        return;
     }
     else {
         req.customer = customer;

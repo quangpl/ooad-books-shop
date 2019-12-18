@@ -1,6 +1,20 @@
 import React from 'react';
 import NumericInput from './NumericInput';
-import { Table, Input, InputNumber, Popconfirm, Spin,Form, Button, message,Radio, Layout, Select, Icon } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Spin,
+  Form,
+  Button,
+  message,
+  Radio,
+  Layout,
+  Select,
+  Icon,
+  AutoComplete
+} from "antd";
 import { Row, Col } from 'antd';
 import moment from "moment"
 import { DatePicker } from 'antd';
@@ -20,6 +34,7 @@ class BookManagement extends React.Component {
     };
   }
 
+  
   async componentDidMount() {
     await this.setState({
       dataSource: await adminService.getBooks()
@@ -45,6 +60,7 @@ class BookManagement extends React.Component {
             })
           );
           message.success("Add book successfully");
+          window.location.reload();
         } catch (e) {
           message.error("ERROR!");
         }
@@ -53,13 +69,30 @@ class BookManagement extends React.Component {
   };
   async handleEdit(){
     console.log("edit");
-await adminService.updateBook({...this.state.selectedRow,...{_id:this.state.selectedRow._id}});
+    // console.log(this.state.selectedRow);
 
+ this.props.form.validateFields(async (err, values) => {
+   if (!err) {
+     console.log("Received values of form: ", values);
+await adminService.updateBook({
+  _id: this.state.selectedRow._id,
+  typeId: values.typeId,
+  name: values.name,
+  author: values.author,
+  numberOf: values.numberOf,
+  unitPrice: values.unitPrice,
+  publishBy: values.publishBy,
+  image: values.image,
+  description: values.description
+});
+   }
+ });
   }
   handleDelete = async data => {
     const dataSource = [...this.state.dataSource];
     this.setState({ dataSource: dataSource.filter(item => item.id !== data) });
     await adminService.deleteBooks(data);
+    window.location.reload();
   };
 
   onClickRow = data => {

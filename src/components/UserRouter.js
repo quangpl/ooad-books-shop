@@ -130,7 +130,7 @@ export default class UserRouter extends React.Component {
                   alignContentL: "center",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  flex: 0.3
+                  flex: 0.25
                 }}
               >
                 <div>

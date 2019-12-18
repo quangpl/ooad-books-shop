@@ -38,8 +38,7 @@ router.get("/auth", async function(req, res, next) {
       _id: req.customer._id,
       token: req.customer.token
     });
- }
-  return;
+ }  
 });
 
 

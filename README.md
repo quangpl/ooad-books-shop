@@ -32,9 +32,13 @@ All your files and folders are presented as a tree in the file explorer. You can
 Using with **NPM** 
 
 ``$ git clone https://github.com/quangpl/ooad-books-shop``
+
 ``$ cd ./ooad-books-shop``
+
 ``$ npm install ``
+
 ``$ npm run server``
+
 ``$ npm run client``
 
 

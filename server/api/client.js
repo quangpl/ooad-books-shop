@@ -49,12 +49,35 @@ router.get("/books", async function(req, res, next) {
   })
 });
 
+router.get("/books/hot-view", async function(req, res, next) {
+  const books = await bookModel.getHotViewBook();
+  res.json({
+    books
+  });
+});
+
+router.get("/books/hot-sale", async function(req, res, next) {
+  const books = await bookModel.getHotSaleBook();
+  res.json({
+    books
+  });
+});
+
+
 router.get("/books/:id", async function(req, res, next) {
   const book = await bookModel.getById(req.params.id);
   res.json({
     book
   });
 });
+
+router.post("/books/comment", async function(req, res, next) {
+  const res = await bookModel.addComment({ bookId: req.body.bookId, customerId: req.body.customerId, message: req.body.message });
+  res.json({
+    error: false,
+  });
+});
+
 
 
 

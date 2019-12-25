@@ -40,7 +40,9 @@ Book.updateBook = async ({
   unitPrice,
   publishBy,
   image,
-  description
+  description,
+  importDate,
+  publishAt
 }) => {
   const res = await Book.findOneAndUpdate(
     {
@@ -55,7 +57,9 @@ Book.updateBook = async ({
         unitPrice,
         publishBy,
         image,
-        description
+        description,
+        importDate,
+        publishAt
       }
     }
   ).exec();
@@ -123,6 +127,21 @@ Book.getByCategory = async category => {
     typeId: category
   }).exec();
 };
+
+Book.getHotSaleBook = async () => {
+  return await Book.find().sort({
+      discount_rate:-1
+  }).exec();
+};
+
+Book.getHotViewBook = async () => {
+  return await Book.find()
+    .sort({
+      viewCount: -1
+    })
+    .exec();
+};
+
 
 
 Book.isValid = async ({

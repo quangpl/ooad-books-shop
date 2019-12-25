@@ -21,7 +21,9 @@ import { DatePicker } from 'antd';
 import { number } from 'prop-types';
 import AdminService from "../services/admin"
 const adminService = new AdminService();
-const format = ["DD/MM/YYYY", "DD/MM/YYYY"];
+const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
+
+
 class BookManagement extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,9 @@ class BookManagement extends React.Component {
       dataSource: [],
       selectedRow: "",
       isLoad: true,
-      isEdit: false
+      isEdit: false,
+      importDate:"",
+      publishAt:""
     };
   }
 
@@ -55,8 +59,8 @@ class BookManagement extends React.Component {
         try {
           await adminService.addBook(
             Object.assign(values, {
-              importDate: moment(values.importDate).unix(),
-              publicAt: moment(values.publish).unix()
+              importDate: this.state.importDate,
+              publishAt: this.state.publishAt
             })
           );
           message.success("Add book successfully");
@@ -68,12 +72,10 @@ class BookManagement extends React.Component {
     });
   };
   async handleEdit(){
-    console.log("edit");
-    // console.log(this.state.selectedRow);
 
  this.props.form.validateFields(async (err, values) => {
    if (!err) {
-     console.log("Received values of form: ", values);
+     console.log("update")
 await adminService.updateBook({
   _id: this.state.selectedRow._id,
   typeId: values.typeId,
@@ -83,7 +85,23 @@ await adminService.updateBook({
   unitPrice: values.unitPrice,
   publishBy: values.publishBy,
   image: values.image,
-  description: values.description
+  description: values.description,
+  publishAt: this.state.publishAt,
+  importDate
+  : this.state.importDate
+});
+console.log({
+  _id: this.state.selectedRow._id,
+  typeId: values.typeId,
+  name: values.name,
+  author: values.author,
+  numberOf: values.numberOf,
+  unitPrice: values.unitPrice,
+  publishBy: values.publishBy,
+  image: values.image,
+  description: values.description,
+  publishAt: this.state.publishAt,
+  importDate: this.state.importDate
 });
    }
  });
@@ -149,7 +167,10 @@ await adminService.updateBook({
         title: "Import Date",
         dataIndex: "importDate",
         width: "10%",
-        editable: true
+        editable: true,
+        render:(d)=>{
+          return moment.unix(d).format("DD/MM/YYYY");
+        }
       },
       {
         title: "Amount",
@@ -200,7 +221,7 @@ await adminService.updateBook({
                   })(<Input placeholder="Tên sách" />)}
                 </Form.Item>
               </Col>
-              <Col xs={24} md={12} sm={12} lg={12}>
+              <Col xs={24} md={8} sm={8} lg={8}>
                 <Form.Item label="Tên tác giả" labelAlign="left">
                   {getFieldDecorator("author", {
                     setFieldsValue: this.state.selectedRow.author,
@@ -225,29 +246,35 @@ await adminService.updateBook({
                         message: "Không bỏ trống trường này!"
                       }
                     ]
-                  })(
-                    <Input
-                     
-                      placeholder="Thể loại"
-                    />
-                  )}
+                  })(<Input placeholder="Thể loại" />)}
                 </Form.Item>
               </Col>
-              <Col xs={24} md={12} sm={12} lg={12}>
-                <Form.Item label="Số lượng" labelAlign="left">
+              <Col xs={24} md={6} sm={6} lg={6}>
+                <Form.Item label="% khuyến mãi" labelAlign="right">
+                  {getFieldDecorator("discount_rate", {
+                    setFieldsValue: this.state.selectedRow.discount_rate,
+                    rules: [
+                      {
+                        required: true,
+                        message: "Không bỏ trống trường này!",
+                        type: "number"
+                      }
+                    ]
+                  })(<InputNumber placeholder="Số lượng" />)}
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6} sm={6} lg={6}>
+                <Form.Item label="Số lượng" labelAlign="center">
                   {getFieldDecorator("numberOf", {
                     setFieldsValue: this.state.selectedRow.numberOf,
                     rules: [
                       {
                         required: true,
-                        message: "Không bỏ trống trường này!"
+                        message: "Không bỏ trống trường này!",
+                        type: "number"
                       }
                     ]
-                  })(
-                    <NumericInput
-                     
-                    />
-                  )}
+                  })(<InputNumber placeholder="Số lượng" />)}
                 </Form.Item>
               </Col>
             </Row>
@@ -273,14 +300,11 @@ await adminService.updateBook({
                     rules: [
                       {
                         required: true,
-                        message: "Không bỏ trống trường này!"
+                        message: "Không bỏ trống trường này!",
+                        type: "number"
                       }
                     ]
-                  })(
-                    <NumericInput
-                    
-                    />
-                  )}
+                  })(<InputNumber typ placeholder="Giá" />)}
                 </Form.Item>
               </Col>
             </Row>
@@ -313,7 +337,37 @@ await adminService.updateBook({
                 </Form.Item>
               </Col>
             </Row>
-            <Row></Row>
+            <Row>
+              <Col xs={24} md={12} sm={12} lg={12}>
+                <Form.Item label="Ngày xuất bản" labelAlign="left">
+                    <DatePicker
+                      defaultValue={moment()}
+                      format={dateFormatList}
+                      onChange={(e)=>{
+                         this.setState({
+                           publishAt: e.unix()
+                         });
+                      }}
+                    />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={12} sm={12} lg={12}>
+                <Form.Item label="Ngày nhập hàng" labelAlign="left">
+                    <DatePicker
+                      defaultValue={moment("01/01/2015", dateFormatList[0])}
+                      format={dateFormatList}
+                      onChange={(value,date)=>
+                      {
+                        console.log(value.unix());
+                        this.setState({
+                          importDate: value.unix()
+                        });
+                      }
+                    }
+                    />
+                </Form.Item>
+              </Col>
+            </Row>
             <Row type="flex" justify="center">
               <Button
                 type="primary"

@@ -40,14 +40,17 @@ class Admin {
   }
 
   async deleteBooks(id) {
-    const res = await this.request.post(`${BACK_END_URL}/api/admin/book/delete`,{
-      id:id
-    });
+    const res = await this.request.post(
+      `${BACK_END_URL}/api/admin/book/delete`,
+      {
+        id: id
+      }
+    );
     return true;
   }
 
   async updateBook({
-     _id,
+    _id,
     typeId,
     name,
     author,
@@ -56,18 +59,22 @@ class Admin {
     publishBy,
     image,
     description,
-  }){
- const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`, {
-   _id,
-   typeId,
-   name,
-   author,
-   numberOf,
-   unitPrice,
-   publishBy,
-   image,
-   description
- });
+    publishAt,
+    importDate
+  }) {
+    const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`, {
+      _id,
+      typeId,
+      name,
+      author,
+      numberOf,
+      unitPrice,
+      publishBy,
+      image,
+      description,
+      publishAt,
+      importDate
+    });
     return true;
   }
 

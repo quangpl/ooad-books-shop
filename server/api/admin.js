@@ -35,9 +35,23 @@ router.post("/book/edit", async function(req, res, next) {
     unitPrice: req.body.unitPrice,
     publishBy: req.body.publishBy,
     image: req.body.image,
-    description: req.body.description
+    description: req.body.description,
+    importDate: req.body.importDate,
+    publishAt: req.body.publishAt
   });
-  
+  console.log({
+    id: req.body._id,
+    typeId: req.body.typeId,
+    name: req.body.name,
+    author: req.body.author,
+    numberOf: req.body.numberOf,
+    unitPrice: req.body.unitPrice,
+    publishBy: req.body.publishBy,
+    image: req.body.image,
+    description: req.body.description,
+    importDate: req.body.importDate,
+    publishAt: req.body.publishAt
+  });
   res.json({
     books: books
   });

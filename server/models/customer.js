@@ -96,7 +96,7 @@ Customer.updateDebt = async ({
 
 Customer.delete = async (id) => {
     return await Customer.deleteOne({
-        _id: id
+      _id: mongoose.Types.ObjectId(id)
     }).exec();
 };
 

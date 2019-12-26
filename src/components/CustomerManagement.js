@@ -153,7 +153,7 @@ class CustomerManagement extends React.Component {
             <div className="action">
               <Popconfirm
                 title="Sure to delete?"
-                onConfirm={() => this.handleDelete(this.state.selectedRow.id)}
+                onConfirm={() => this.handleDelete(this.state.selectedRow._id)}
               >
                 <Button type="danger" icon="delete" />
               </Popconfirm>

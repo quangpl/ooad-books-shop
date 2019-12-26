@@ -16,6 +16,10 @@ const BookSchema = new Schema(
       type: String,
       required: true
     },
+    discount_rate: {
+      type: Number,
+      default: 0
+    },
     numberOf: {
       type: Number,
       required: true,
@@ -29,35 +33,36 @@ const BookSchema = new Schema(
       type: Number,
       required: true
     },
-     importDate: {
-      type: Date,
-      required: true
+    importDate: {
+      type: Number,
     },
     publishBy: {
       type: String,
       required: true
     },
     publishAt: {
-      type: Date,
+      type: Number
     },
     description: {
       type: String,
       required: true
     },
-    comments:{
-      type : [new Schema({
-        customerId: String,
-        message: String
-      })]
+    comments: {
+      type: [
+        new Schema({
+          customerId: String,
+          message: String
+        })
+      ]
     },
     image: {
       type: String,
       required: true,
       default: "https://via.placeholder.com/600"
     },
-    viewCount:{
-      type:Number,
-      default:0
+    viewCount: {
+      type: Number,
+      default: 0
     },
     tag: {
       type: [String],

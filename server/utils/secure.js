@@ -1,20 +1,16 @@
 const customerModel = require("../models/customer");
  
  
- const authCustomer = async (req,res, next)=>{
+ const authCustomer = async (req,res,next)=>{
     const token = req.headers['x-token'];
     const customer = await  customerModel.getByToken(token);
     
     if(!customer||!token){
-        res.json({
-            error: true,
-            message:"Request is not valid"
-        })
-        return;
+
+        return false;
     }
     else {
-        req.customer = customer;
-        next()
+      return customer;
     }
 }
 module.exports = {

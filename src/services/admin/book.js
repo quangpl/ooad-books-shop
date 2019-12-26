@@ -1,6 +1,6 @@
 import axios from "axios";
-import { BACK_END_URL } from "../utils/constant";
-class Admin {
+import { BACK_END_URL } from "../../utils/constant";
+class BookManagement {
   constructor(token = localStorage.getItem("token")) {
     this.token = token;
     this.request = axios.create({
@@ -40,14 +40,17 @@ class Admin {
   }
 
   async deleteBooks(id) {
-    const res = await this.request.post(`${BACK_END_URL}/api/admin/book/delete`,{
-      id:id
-    });
+    const res = await this.request.post(
+      `${BACK_END_URL}/api/admin/book/delete`,
+      {
+        id: id
+      }
+    );
     return true;
   }
 
   async updateBook({
-     _id,
+    _id,
     typeId,
     name,
     author,
@@ -56,18 +59,22 @@ class Admin {
     publishBy,
     image,
     description,
-  }){
- const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`, {
-   _id,
-   typeId,
-   name,
-   author,
-   numberOf,
-   unitPrice,
-   publishBy,
-   image,
-   description
- });
+    publishAt,
+    importDate
+  }) {
+    const res = await this.request.post(`${BACK_END_URL}/api/admin/book/edit`, {
+      _id,
+      typeId,
+      name,
+      author,
+      numberOf,
+      unitPrice,
+      publishBy,
+      image,
+      description,
+      publishAt,
+      importDate
+    });
     return true;
   }
 
@@ -89,4 +96,4 @@ class Admin {
   //     return res.data;
   //   }
 }
-export default Admin;
+export default BookManagement;

@@ -1,229 +1,210 @@
 import React from 'react';
 import NumericInput from './NumericInput';
-import { Table, Input, InputNumber, Popconfirm, Form, Button, Radio, Layout, Select, Icon } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Spin,message,
+  Popconfirm,
+  Form,
+  Button,
+  Radio,
+  Layout,
+  Select,
+  Icon
+} from "antd";
 import { Row, Col } from 'antd';
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
 import { Checkbox } from 'antd';
-
-//import { Responsive } from "react-responsive";
-// function onChange(e) {
-//     console.log(`checked = ${e.target.checked}`);
-// }
+import ReceiptService from "../services/admin/bill"
+const receiptService = new ReceiptService();
 
 class ReceiptManagement extends React.Component {
-    constructor(props){
-        super(props);
+  constructor(props) {
+    super(props);
 
-        // this.state={
-        //   dataSource: props.dataSource,
-        //   selectedRow: '',
-        // }
-
-        this.state={
-            dataSource:[
-                {
-                },
-            ],
-            selectedRow: '',
-        };
-    }
-
-    onClick = (data) => {
-        console.log(data);
-    }
-
-    // onChange = e => {
-    //     this.setState((state, e) => {
-    //         state.isAdmin=e.target.checked; 
-    //     });
-    // }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log("Received values of form: ", values);
-            }
-        });
-    }
-
-    handleDelete = key => {
-        console.log(key);
-        const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.id !== key) });
+    this.state = {
+      dataSource: [],
+      selectedRow: "",
+      isLoad: true,
+      isEdit: false,
     };
+  }
 
-    onClickRow = (data) => {
-        return {
-            onClick: () => {
-                //this.handleDelete(data.id);
-                //console.log(data);
-                this.setState({
-                    selectedRow: data,
-                });
-                //console.log(this.state);
-            }
-        }
-    }
+  async componentDidMount() {
+    await this.setState({
+      dataSource: await receiptService.getAll()
+    });
+    console.log(await receiptService.getAll());
+    this.setState({
+      isLoad: false
+    });
+  }
 
-    onEdit = (data) => {
-      console.log(data.username);
-      if(data!==null){
-
+  handleEdit = async () => {
+    this.props.form.validateFields(async (err, values) => {
+      if (!err) {
+        console.log("update");
+        await receiptService.update({
+          id: this.state.selectedRow._id,
+          customerId: values.customerId,
+          employeeId: values.employeeId,
+          value: values.value
+        });
+        window.location.reload();
+      } else {
+        message.error("Có lỗi xảy ra");
+        return;
       }
-    }
+    });
+  };
+  handleDelete = async data => {
+    const dataSource = [...this.state.dataSource];
+    this.setState({ dataSource: dataSource.filter(item => item.id !== data) });
+    await receiptService.delete(data);
+    window.location.reload();
+  };
 
-    render() {
-        const { getFieldDecorator } = this.props.form;
+  onClickRow = data => {
+    return {
+      onClick: () => {
+        this.setState({
+          selectedRow: data
+        });
+        this.props.form.setFieldsValue(data);
+        console.log(data);
+        this.setState({
+          isEdit: true,
+          selectedRow: data
+        });
+      }
+    };
+  };
 
-        var columns = [
-          {
-            title: "Customer",
-            dataIndex: 'customername',
-            width: "15%"   
-          },
-          {
-            title: "Staff",
-            dataIndex: "staffname",
-            width: "18%",
-            editable: true
-          },
-          {
-            title: "Value",
-            dataIndex: "value",
-            width: "15%",
-            editable: true
-          },
-          {
-            title: "Books",
-            dataIndex: "books",
-            render: ()=>{
-              return(
-                  <Button type="primary" icon="book" />
-              )
-          }
-          },
-          {
-            title: "Is Paid",
-            dataIndex: "isAdmin",
-            width: "8%",
-            editable: true
-          },
-          {
-            title: "Action",
-            dataIndex: "action",
-            width: "20%",
-            render:()=>{
-                return(
-                    <div className="action">
-                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(this.state.selectedRow.id)}>
-                            <Button type="danger" icon="delete" /> 
-                        </Popconfirm>
-                        <Button type="primary" style={{marginLeft:5}} icon="edit" onClick={this.onEdit(this.state.selectedRow)}/> 
-                    </div>
-                )
-            }
-          }
-        ];
+  render() {
+    const { getFieldDecorator } = this.props.form;
 
-            return (
-              <div>
-                <h1>Quản Lý Hóa Đơn</h1>
-                <div>
-                  <Form
-                    onSubmit={this.handleSubmit}
-                    wrapperCol={{ span: 23 }}
-                    labelCol={{ span: 5 }}
-                  >
-                    <Row>
-                      <Col xs={24} md={12} sm={12} lg={12}>
-                        <Form.Item label="Tên nhân viên" labelAlign="left">
-                          {getFieldDecorator("staffname", {
-                            rules: [
-                              {
-                                required: true,
-                                message: "Không bỏ trống trường này!"
-                              }
-                            ]
-                          })(<Input placeholder="Tên nhân viên" id='staffname'/>)}
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12} sm={12} lg={12}>
-                        <Form.Item label="Tên khách hàng" labelAlign="left">
-                          {getFieldDecorator("customername", {
-                            rules: [
-                              {
-                                required: true,
-                                message: "Không bỏ trống trường này!"
-                              }
-                            ]
-                          })(<Input placeholder="Tên khách hàng" id='customername'/>)}
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={24} md={12} sm={12} lg={12}>
-                        <Form.Item label="Sách" labelAlign="left">
-                          {getFieldDecorator("books", {
-                            rules: [
-                              {
-                                required: true,
-                                message: "Không bỏ trống trường này!"
-                              }
-                            ]
-                          })(<Input placeholder="Sách" id='books'/>)}
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} md={12} sm={12} lg={12}>
-                        <Form.Item label="Thành tiền" labelAlign="left">
-                          {getFieldDecorator("value", {
-                            rules: [
-                              {
-                                required: true,
-                                message: "Không bỏ trống trường này!"
-                              }
-                            ]
-                          })(<NumericInput placeholder="Thành tiền" id='value'/>)}
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={24} md={12} sm={12} lg={12}>
-                        <Form.Item label="Đã thanh toán" labelAlign="left">
-                          {getFieldDecorator("ispaid", {
-                            rules: [
-                              {
-                                required: true,
-                                message: "Không bỏ trống trường này!"
-                              }
-                            ]
-                          })(<Checkbox id='ispaid'/>)}
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Row type="flex" justify="center">
-                      <Button type="primary" htmlType="submit">
-                        Thêm
-                      </Button>
-                    </Row>
-                  </Form>
-                </div>
-                  <Table
-                    rowKey={row => row.id}
-                    dataSource={this.state.dataSource}
-                    columns={columns}
-                    onRow={this.onClickRow}
-                  />
-                {/* <Responsive displayIn={["Mobile", "Tablet"]}>
-                  This is a MOBILE/TABLET
-                </Responsive>
-                <Responsive displayIn={["Laptop"]}>
-                  This is a LAPTOP or a Larger screen
-                </Responsive> */}
-              </div>
-            );
-    }
+    var columns = [
+      {
+        title: "Customer",
+        dataIndex: "customerId",
+        width: "15%"
+      },
+      {
+        title: "Staff",
+        dataIndex: "employeeId",
+        width: "18%",
+      },
+      {
+        title: "Value",
+        dataIndex: "value",
+        width: "15%",
+      },
+      {
+        title: "Trạng thái thanh toán",
+        dataIndex: "isPaid",
+        width: "8%",
+        render:(res)=>{
+        if(res){
+          return <h5>X</h5>
+        }
+        }
+      },
+      {
+        title: "Action",
+        dataIndex: "action",
+        width: "20%",
+        render: () => {
+          return (
+            <div className="action">
+              <Popconfirm
+                title="Sure to delete?"
+                onConfirm={() => this.handleDelete(this.state.selectedRow._id)}
+              >
+                <Button type="danger" icon="delete" />
+              </Popconfirm>
+              <Button
+                type="primary"
+                style={{ marginLeft: 5 }}
+                icon="edit"
+              />
+            </div>
+          );
+        }
+      }
+    ];
+
+    return (
+      <div>
+        <h1>Quản Lý Hóa Đơn</h1>
+        <div>
+          <Form
+            onSubmit={this.handleSubmit}
+            wrapperCol={{ span: 23 }}
+            labelCol={{ span: 5 }}
+          >
+            <Row>
+              <Col xs={24} md={12} sm={12} lg={12}>
+                <Form.Item label="Tên người lập" labelAlign="left">
+                  {getFieldDecorator("employeeId", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Không bỏ trống trường này!"
+                      }
+                    ]
+                  })(<Input />)}
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={12} sm={12} lg={12}>
+                <Form.Item label="Khách hàng" labelAlign="left">
+                  {getFieldDecorator("customerId", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Không bỏ trống trường này!"
+                      }
+                    ]
+                  })(<Input/>)}
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={24} md={12} sm={12} lg={12}>
+                <Form.Item label="Thành tiền" labelAlign="left">
+                  {getFieldDecorator("value", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Không bỏ trống trường này!"
+                      }
+                    ]
+                  })(<NumericInput placeholder="Thành tiền" id="value" />)}
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row type="flex" justify="center">
+              <Button type="primary" htmlType="submit">
+                Save
+              </Button>
+            </Row>
+          </Form>
+        </div>
+        {this.state.isLoad ? (
+          <Spin size="large" />
+        ) : (
+          <Table
+            rowKey={row => row._id}
+            dataSource={this.state.dataSource}
+            columns={columns}
+            onRow={this.onClickRow}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 const WrappedReceiptManagement = Form.create({ name: "receipt_management" })(

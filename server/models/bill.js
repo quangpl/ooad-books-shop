@@ -6,14 +6,15 @@ let Book = require('./book');
 Bill.add = async ({
     customerId,
     employeeId,
-    books
+    books, 
+    value
 }) => {
-    let value = await Bill.getValue(books);
+    console.log(books);
     let newBill = new Bill({
-        customerId: customerId,
-        employeeId: employeeId,
-        value: value,
-        books: books,
+        customerId,
+        employeeId,
+        value,
+        books,
     });
 
     await newBill.save();
@@ -24,18 +25,19 @@ Bill.update = async ({
     id,
     customerId,
     employeeId,
-    books
+    value
 }) => {
 
-    let value = await Bill.getValue(books);
-    return await Book.updateOne({
-        _id: id
-    }, {
-            customerId: customerId,
-            employeeId: employeeId,
-            books: books,
-            value: value
-        }).exec();
+    return await Book.updateOne(
+      {
+        _id: mongoose.Types.ObjectId(id)
+      },
+      {
+        customerId: customerId,
+        employeeId: employeeId,
+        value: value
+      }
+    ).exec();
 };
 
 Bill.delete = async (id) => {
@@ -58,7 +60,7 @@ Bill.getValue = async (listBook) => {
     });
 
     for (let i = 0; i < books.length; i++) {
-        let price = books[i].unitPrice * 1.05;//todo: get parameter from setting db
+        let price = books[i].unitPrice ;//todo: get parameter from setting db
         value += price;
     }
 

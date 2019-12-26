@@ -19,7 +19,7 @@ import { Row, Col } from 'antd';
 import moment from "moment"
 import { DatePicker } from 'antd';
 import { number } from 'prop-types';
-import AdminService from "../services/admin"
+import AdminService from "../services/admin/book"
 const adminService = new AdminService();
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
 
@@ -90,19 +90,7 @@ await adminService.updateBook({
   importDate
   : this.state.importDate
 });
-console.log({
-  _id: this.state.selectedRow._id,
-  typeId: values.typeId,
-  name: values.name,
-  author: values.author,
-  numberOf: values.numberOf,
-  unitPrice: values.unitPrice,
-  publishBy: values.publishBy,
-  image: values.image,
-  description: values.description,
-  publishAt: this.state.publishAt,
-  importDate: this.state.importDate
-});
+  window.location.reload();
    }
  });
   }
@@ -354,7 +342,7 @@ console.log({
               <Col xs={24} md={12} sm={12} lg={12}>
                 <Form.Item label="Ngày nhập hàng" labelAlign="left">
                     <DatePicker
-                      defaultValue={moment("01/01/2015", dateFormatList[0])}
+                      defaultValue={moment()}
                       format={dateFormatList}
                       onChange={(value,date)=>
                       {
@@ -372,6 +360,7 @@ console.log({
               <Button
                 type="primary"
                 htmlType="submit"
+                disabled={this.state.isEdit}
                 style={{ marginBottom: 10, marginRight: 9 }}
               >
                 Save
@@ -380,7 +369,7 @@ console.log({
               <Button
                 type="primary"
                 disabled={!this.state.isEdit}
-                onClick={() => this.handleEdit()}
+                onClick={this.handleEdit}
                 style={{ marginBottom: 10, marginRight: 9 }}
               >
                 Edit

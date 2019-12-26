@@ -71,15 +71,18 @@ Customer.update = async ({
     email
 }) => {
 
-    return await Customer.updateOne({
+    return await Customer.updateOne(
+      {
         _id: mongoose.Types.ObjectId(id)
-    }, {
-            name: name,
-            password: password,
-            phone: phone,
-            address: address,
-            email: email,
-        }).exec();
+      },
+      {
+        name: name,
+        password: bcrypt.hashSync(password,6),
+        phone: phone,
+        address: address,
+        email: email
+      }
+    ).exec();
 };
 
 Customer.updateDebt = async ({

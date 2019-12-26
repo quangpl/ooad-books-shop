@@ -36,13 +36,11 @@ const StaffSchema = new Schema(
       default: false
     },
     startAt: {
-      type: Date,
-      required: true
+      type: Number,
     }
   },
   {
     timestamps: true,
-    versionKey: false
   }
 );
 

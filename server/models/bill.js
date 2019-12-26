@@ -24,18 +24,19 @@ Bill.update = async ({
     id,
     customerId,
     employeeId,
-    books
+    value
 }) => {
 
-    let value = await Bill.getValue(books);
-    return await Book.updateOne({
-        _id: id
-    }, {
-            customerId: customerId,
-            employeeId: employeeId,
-            books: books,
-            value: value
-        }).exec();
+    return await Book.updateOne(
+      {
+        _id: mongoose.Types.ObjectId(id)
+      },
+      {
+        customerId: customerId,
+        employeeId: employeeId,
+        value: value
+      }
+    ).exec();
 };
 
 Bill.delete = async (id) => {

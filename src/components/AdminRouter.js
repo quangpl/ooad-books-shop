@@ -41,9 +41,7 @@ export default class UserRouter extends React.Component {
   render() {
     const menu = (
       <Menu onClick={this.handleMenuClick}>
-        <Menu.Item key="1">Clicking me will not close the menu.</Menu.Item>
-        <Menu.Item key="2">Clicking me will not close the menu also.</Menu.Item>
-        <Menu.Item key="3">Clicking me will close the menu</Menu.Item>
+        <Menu.Item key="1">Logout</Menu.Item>
       </Menu>
     );
     return (
@@ -122,7 +120,7 @@ export default class UserRouter extends React.Component {
                 <div>
                   <Avatar shape="cirlce" size={40} icon="user" />
                   <Dropdown overlay={menu}>
-                    <b>Guest</b>
+                    <b>Admin</b>
                   </Dropdown>
                 </div>
               </div>

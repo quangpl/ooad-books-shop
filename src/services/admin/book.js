@@ -1,6 +1,6 @@
 import axios from "axios";
-import { BACK_END_URL } from "../utils/constant";
-class Admin {
+import { BACK_END_URL } from "../../utils/constant";
+class BookManagement {
   constructor(token = localStorage.getItem("token")) {
     this.token = token;
     this.request = axios.create({
@@ -96,4 +96,4 @@ class Admin {
   //     return res.data;
   //   }
 }
-export default Admin;
+export default BookManagement;

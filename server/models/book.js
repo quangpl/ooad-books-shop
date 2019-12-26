@@ -112,11 +112,11 @@ Book.getAllByNumber = async (num) => {
 };
 
 Book.addViewCount = async (id) => {
-    return await Book.updateOne({
+    return await Book.findOneAndUpdate({
       _id: mongoose.Types.ObjectId(id)
     },{
         $inc:{
-            viewCount:1
+            viewCount:0.5
         }
     }).exec();
 };

@@ -1,1 +1,1 @@
-export const BACK_END_URL = "https://appzt.herokuapp.com"
+export const BACK_END_URL = "http://localhost:3000"

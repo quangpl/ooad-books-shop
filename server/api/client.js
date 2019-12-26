@@ -5,7 +5,10 @@ const bookModel = require("../models/book");
 const billModel = require("../models/bill");
 const { authCustomer } = require("../utils/secure");
 router.get("/", async function(req, res, next) {
-  // authCustomer(req, res, next);
+  res.json({
+    message:"API Bookshop is active",
+   error:false
+  })
 });
 
 router.post("/register", async function(req, res, next) {
@@ -34,14 +37,14 @@ router.get("/auth", async function(req, res, next) {
   let customer = await authCustomer(req, res, next);
   if (customer) {
     req.customer = customer;
-    res.json({
+    res.status(200).json({
       name: req.customer.name,
       _id: req.customer._id,
       token: req.customer.token
     });
     return;
   } else {
-    res.status(200).json({
+    res.status(404).json({
       error: true
     });
     return;

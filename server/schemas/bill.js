@@ -8,7 +8,7 @@ const BillSchema = new Schema({
         required: true
     },
     employeeId: {
-        type: Schema.ObjectId,
+        type: String,
         required: true
     },
     value: {
@@ -16,7 +16,7 @@ const BillSchema = new Schema({
         required: true
     },
     books: {
-        type: Array,
+        type: [mongoose.Types.ObjectId],
         required: true
     },
     isPaid: {

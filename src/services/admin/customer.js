@@ -13,6 +13,15 @@ class CustomerManagement {
     return res.data.customers;
   }
 
+  async getByToken() {
+    const res = await this.request.post(
+      `${BACK_END_URL}/api/client/customers/get`,{
+        token: this.token
+      }
+    );
+    return res.data.customer;
+  }
+
   async delete(id) {
     const res = await this.request.post(
       `${BACK_END_URL}/api/admin/customer/delete`,
@@ -23,14 +32,7 @@ class CustomerManagement {
     return true;
   }
 
-  async update({   
-    id,
-    name,
-    password,
-    phone,
-    address,
-    email,
- }) {
+  async update({ id, name, password, phone, address, email }) {
     const res = await this.request.post(
       `${BACK_END_URL}/api/admin/customer/edit`,
       {

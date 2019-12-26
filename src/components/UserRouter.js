@@ -115,7 +115,7 @@ export default class UserRouter extends React.Component {
                 </Button>
               </Link>
 
-              <Search
+              {/* <Search
                 placeholder="Input book name"
                 enterButton="Search"
                 size="large"
@@ -123,7 +123,7 @@ export default class UserRouter extends React.Component {
                   flex: 0.6
                 }}
                 onSearch={value => console.log(value)}
-              />
+              /> */}
               <div
                 style={{
                   display: "flex",

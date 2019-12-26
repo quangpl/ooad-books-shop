@@ -71,7 +71,7 @@ class BookManagement extends React.Component {
       }
     });
   };
-  async handleEdit(){
+   handleEdit=async()=>{
 
  this.props.form.validateFields(async (err, values) => {
    if (!err) {

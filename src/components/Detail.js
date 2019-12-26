@@ -2,26 +2,70 @@ import React from "react";
 import DetailDescription from "./DetailDescription";
 import DetailComment from "./DetailComment";
 import _ from "lodash";
-import CustomerService from "../services/customer"
+import CustomerService from "../services/customer";
 import { Row, Col, Divider, Typography, InputNumber, Button } from "antd";
-import { Layout, Menu, Breadcrumb, Icon, Avatar, Rate } from "antd";
+import { Layout, Menu, Breadcrumb, Icon, Avatar, Rate, message } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 export default class Detail extends React.Component {
-  constructor(props){
-super(props);
-this.state = {
-  data :{}
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+      quantity: 0
+    };
   }
-  async componentDidMount(){
-const customerService = new CustomerService();
-this.setState({
-  data: await customerService.getById(this.props.match.params.id)
-});
-console.log(await customerService.getById(this.props.match.params.id));
+  async componentDidMount() {
+    const customerService = new CustomerService();
+    this.setState({
+      data: await customerService.getById(this.props.match.params.id)
+    });
+    console.log(await customerService.getById(this.props.match.params.id));
   }
+
+  onSelect = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      message.error("Vui lòng đăng nhập để sử dụng chức năng này");
+      return false;
+    }
+  };
+
+  onSelectPay = () => {
+    console.log("dasW")
+    let products = localStorage.getItem("products");
+    let data;
+    if (!products) {
+      const newProduct = {
+        id: this.props.match.params.id,
+        name: this.state.data.name,
+        image: this.state.data.image,
+        quantity: this.state.quantity,
+        unitPrice: this.state.data.unitPrice,
+        discount_rate: this.state.data.discount_rate
+      };
+      data =[newProduct]
+      
+        localStorage.setItem("products", JSON.stringify(data));
+    } else {
+        let listProduct = localStorage.getItem("products");
+        listProduct = JSON.parse(listProduct);
+        listProduct = listProduct.filter(e => e.id !== this.props.match.params.id);
+        listProduct.push({
+          id: this.props.match.params.id,
+          name: this.state.data.name,
+          image: this.state.data.image,
+          quantity: this.state.quantity,
+          unitPrice: this.state.data.unitPrice,
+          discount_rate: this.state.data.discount_rate
+        });
+         console.log(listProduct);
+         localStorage.setItem("products", JSON.stringify(listProduct));
+    }
+    //  localStorage.setItem("products", JSON.stringify({ products }));
+     message.success("Thêm vào giỏ hàng thành công!");
+  };
   render() {
     return (
       <>
@@ -44,10 +88,11 @@ console.log(await customerService.getById(this.props.match.params.id));
               <span>
                 <b>Giá :</b>
                 <b className="detail-info--price">
-                  {" "}
                   {this.state.data.unitPrice} đ
                 </b>
-                <span className="detail-info--discount">(-22%)</span>
+                <span className="detail-info--discount">
+                  (-{this.state.data.discount_rate}%)
+                </span>
               </span>
 
               <p>
@@ -60,22 +105,22 @@ console.log(await customerService.getById(this.props.match.params.id));
             <Divider />
             <div className="detail-info--action">
               <b>Số lượng:</b>
-              <InputNumber min={1} max={10} defaultValue={3} />
+              <InputNumber
+                min={1}
+                max={10}
+                defaultValue={0}
+                onChange={e => {
+                  console.log(e);
+                  this.setState({
+                    quantity: e
+                  });
+                }}
+              />
               <Button
                 type="danger"
                 shape="round"
                 icon="shopping-cart"
-                size="large"
-                onClick={()=>{
-                  //  let list = localStorage.getItem("cart");
-                  //  if(!list){
-                  //    list = new Array(10);
-                  //  }
-                  //  list.push(this.props.match.params.id);
-                  //  list = _.uniq(list);
-                  // localStorage.setItem("cart", list);
-                  alert("Add to cart");
-                }}
+                onClick={this.onSelectPay}
               >
                 Chọn mua
               </Button>

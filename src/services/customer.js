@@ -41,8 +41,17 @@ class Customer {
     const res = await this.request.get(`${BACK_END_URL}/api/client/books`);
     return res.data.books;
   }
+
+  async getBooksSale() {
+    const res = await this.request.get(
+      `${BACK_END_URL}/api/client/books/hot-sale`
+    );
+    return res.data.books;
+  }
   async getById(id) {
-    const res = await this.request.get(`${BACK_END_URL}/api/client/books/${id}`);
+    const res = await this.request.get(
+      `${BACK_END_URL}/api/client/books/${id}`
+    );
     return res.data.book;
   }
 }

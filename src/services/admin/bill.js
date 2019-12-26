@@ -8,15 +8,17 @@ class BillManagement {
     });
   }
 
-  async add(
+  async add({
     customerId,
     employeeId,
     books,
-  ) {
-    await this.request.post(`${BACK_END_URL}/api/admin/bill`, {
+    value
+  }) {
+    await this.request.post(`${BACK_END_URL}/api/client/payment`, {
       customerId,
       employeeId,
-      books
+      books,
+      value
     });
     return true;
   }

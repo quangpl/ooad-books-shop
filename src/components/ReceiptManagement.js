@@ -36,7 +36,7 @@ class ReceiptManagement extends React.Component {
     await this.setState({
       dataSource: await receiptService.getAll()
     });
-
+    console.log(await receiptService.getAll());
     this.setState({
       isLoad: false
     });
@@ -95,19 +95,21 @@ class ReceiptManagement extends React.Component {
         title: "Staff",
         dataIndex: "employeeId",
         width: "18%",
-        editable: true
       },
       {
         title: "Value",
         dataIndex: "value",
         width: "15%",
-        editable: true
       },
       {
-        title: "Is Paid",
+        title: "Trạng thái thanh toán",
         dataIndex: "isPaid",
         width: "8%",
-        editable: true
+        render:(res)=>{
+        if(res){
+          return <h5>X</h5>
+        }
+        }
       },
       {
         title: "Action",
@@ -126,7 +128,6 @@ class ReceiptManagement extends React.Component {
                 type="primary"
                 style={{ marginLeft: 5 }}
                 icon="edit"
-                onClick={this.onEdit(this.state.selectedRow)}
               />
             </div>
           );
@@ -146,7 +147,7 @@ class ReceiptManagement extends React.Component {
             <Row>
               <Col xs={24} md={12} sm={12} lg={12}>
                 <Form.Item label="Tên người lập" labelAlign="left">
-                  {getFieldDecorator("staffname", {
+                  {getFieldDecorator("employeeId", {
                     rules: [
                       {
                         required: true,
@@ -157,15 +158,15 @@ class ReceiptManagement extends React.Component {
                 </Form.Item>
               </Col>
               <Col xs={24} md={12} sm={12} lg={12}>
-                <Form.Item label="Tên khách hàng" labelAlign="left">
-                  {getFieldDecorator("customername", {
+                <Form.Item label="Khách hàng" labelAlign="left">
+                  {getFieldDecorator("customerId", {
                     rules: [
                       {
                         required: true,
                         message: "Không bỏ trống trường này!"
                       }
                     ]
-                  })(<Input placeholder="Tên khách hàng" id="customername" />)}
+                  })(<Input/>)}
                 </Form.Item>
               </Col>
             </Row>
@@ -180,18 +181,6 @@ class ReceiptManagement extends React.Component {
                       }
                     ]
                   })(<NumericInput placeholder="Thành tiền" id="value" />)}
-                </Form.Item>
-              </Col>
-              <Col xs={24} md={12} sm={12} lg={12}>
-                <Form.Item label="Đã thanh toán" labelAlign="left">
-                  {getFieldDecorator("ispaid", {
-                    rules: [
-                      {
-                        required: true,
-                        message: "Không bỏ trống trường này!"
-                      }
-                    ]
-                  })(<Checkbox id="ispaid" />)}
                 </Form.Item>
               </Col>
             </Row>
